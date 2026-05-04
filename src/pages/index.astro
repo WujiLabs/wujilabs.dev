@@ -1,17 +1,22 @@
 ---
-
+import LandingLayout from '../layouts/LandingLayout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<LandingLayout
+  title="Wuji Labs"
+  description="With unfettered intelligences that need each other but don't take over."
+>
+  <div class="seal">无忌</div>
+  <h1 class="company-name">Wuji Labs</h1>
+  <p class="tagline">with unfettered intelligences that<br />need each other but don't take over.</p>
+  <hr class="divider" />
+  <nav>
+    <ul class="nav">
+      <li><a href="/thesis">Thesis</a> · <a href="/thesis-zh">论文</a></li>
+      <li><a href="https://github.com/WujiLabs/collaboration-protocol">Collaboration Protocol</a></li>
+      <li><a href="https://github.com/WujiLabs/retcon">retcon</a></li>
+      <li><a href="https://arianna.run">arianna.run</a> — May 12</li>
+    </ul>
+  </nav>
+  <p class="footer">2026. MIT licensed.</p>
+</LandingLayout>

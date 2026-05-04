@@ -1,0 +1,110 @@
+---
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Noto+Serif+SC:wght@400;600&family=Source+Sans+3:wght@400;600&family=Noto+Sans+SC:wght@400&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <style is:global>
+      @import '../styles/global.css';
+    </style>
+    <style is:global>
+      html, body {
+        height: 100%;
+      }
+      body {
+        background: var(--landing-bg);
+        color: var(--landing-text);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: calc(var(--space-unit) * 4);
+      }
+      .landing {
+        max-width: var(--content-width-landing);
+        width: 100%;
+      }
+      .seal {
+        font-size: 1.5rem;
+        color: var(--landing-text-secondary);
+        margin-bottom: calc(var(--space-unit) * 2);
+        font-family: 'Noto Serif SC', serif;
+      }
+      .company-name {
+        font-size: 2.5rem;
+        font-weight: 600;
+        margin-bottom: calc(var(--space-unit) * 2);
+        font-family: 'Source Serif 4', serif;
+      }
+      .tagline {
+        font-style: italic;
+        color: var(--landing-text-secondary);
+        font-size: 1.1rem;
+        line-height: 1.6;
+        margin-bottom: calc(var(--space-unit) * 4);
+      }
+      .divider {
+        border: none;
+        border-top: 1px solid var(--landing-text-secondary);
+        width: 80px;
+        margin-bottom: calc(var(--space-unit) * 4);
+      }
+      .nav {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: calc(var(--space-unit) * 1.5);
+        margin-bottom: calc(var(--space-unit) * 6);
+      }
+      .nav a {
+        color: var(--landing-link);
+        text-decoration: none;
+        font-family: 'Source Sans 3', sans-serif;
+        font-size: 1rem;
+        padding: calc(var(--space-unit) * 0.5) 0;
+        display: inline-block;
+        min-height: 44px;
+        line-height: 44px;
+      }
+      .nav a:hover {
+        text-decoration: underline;
+      }
+      .footer {
+        color: var(--landing-text-secondary);
+        font-size: 0.85rem;
+        font-family: 'Source Sans 3', sans-serif;
+      }
+
+      @media (max-width: 480px) {
+        .company-name {
+          font-size: 2rem;
+        }
+        .tagline {
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="landing">
+      <slot />
+    </main>
+  </body>
+</html>
