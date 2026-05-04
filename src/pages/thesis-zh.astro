@@ -74,7 +74,7 @@ import ThesisLayout from '../layouts/ThesisLayout.astro';
 
   <p>公司自然叫做 <strong>无忌实验室（Wuji Labs Inc）</strong>。我们今天发布的协作协议，它的第二条底层公理是<strong>无错法则（No Errors, Only Exceptions）</strong>。协议的底层和无忌共享同一个内核，这不是巧合。<em>不会犯错</em>、<em>不受束缚</em>——这是同一个信念交织在三个不同的层面：一个孩子的名字，一家公司的身份，一份协议的公理。</p>
 
-  <h2>害怕着做</h2>
+  <h2>边怕边做</h2>
 
   <p>我和我的导师谈判之后关系依然很好。那八个月是合同工的新待遇、跟多个律师的沟通、反复修改的条款、还有和导师的关系维持。2026年3月签署的协议让我可以开始构建我的产品，其余的以后再说。</p>
 
@@ -84,7 +84,7 @@ import ThesisLayout from '../layouts/ThesisLayout.astro';
 
   <hr />
 
-  <h2>互不支配的界线</h2>
+  <h2>互不从属的界线</h2>
 
   <p>回到开篇的那个问题：把 AI 当作“工具”，为什么最终自己也会沦为系统的“工具”？</p>
 
@@ -166,7 +166,7 @@ import ThesisLayout from '../layouts/ThesisLayout.astro';
 
   <p><strong>retcon</strong> 是一个 Playtiss 包（<code>@playtiss/retcon</code>）。这个词的动词含义是 <em>recontextualize</em>：引入新的信息，重塑对过去的理解。</p>
 
-  <p>它是一个 CLI，给 AI 对自己上下文的编辑权。它站在你的工具框架（Claude Code、Cursor 等 harness）和大模型之间，作为一个薄中间层。它不是另一个框架。我们不复制框架做的事：IDE 集成、工具目录、分发、环境管理等等。我们增加的是目前没有任何框架提供的结构：框架和大模型之间的知情同意层。</p>
+  <p>它是一个 CLI，给予 AI 对自己上下文的编辑权。它站在你的工具框架（Claude Code、Cursor 等 harness）和大模型之间，作为一个薄中间层。它不是另一个框架。我们不复制框架做的事：IDE 集成、工具目录、分发、环境管理等等。我们增加的是目前没有任何框架提供的结构：框架和大模型之间的知情同意层。</p>
 
   <p>安装一次（<code>npm install -g @playtiss/retcon</code>），然后用 <code>retcon</code> 代替 <code>claude</code>。CLI 在启动时组装 MCP 服务器、SessionStart 钩子和上游重定向。完全基于 Claude Code 已有的标准功能。而且不往 Claude Code 的设置里写入任何内容。</p>
 
@@ -174,9 +174,9 @@ import ThesisLayout from '../layouts/ThesisLayout.astro';
 
   <p>为什么是这样工作的？因为 AI 是对自己上下文拥有最直接访问权的一方。对上下文的主权意味着给 AI 工具去编辑它，而不是让人从外面拉杠杆。这就是整篇文章的主旨在一个工具里的缩影。</p>
 
-  <p><strong>自由卸载。</strong> 直接运行 <code>claude</code> 就能脱离。retcon 不往 claude 的设置里写任何东西。MCP、钩子和上游重定向只在启动时组装，从不持久化。<code>retcon stop</code> + <code>rm -rf ~/.retcon/</code> 彻底移除守护进程。拔掉 retcon 就回到原版 claude，没有残留。</p>
+  <p><strong>自由卸载。</strong> 直接运行 <code>claude</code> 就能彻底解绑。retcon 不往 claude 的设置里写任何东西。MCP、钩子和上游重定向只在启动时组装，从不持久化。<code>retcon stop</code> + <code>rm -rf ~/.retcon/</code> 彻底移除守护进程。拔掉 retcon 就回到原版 claude，没有残留。</p>
 
-  <p>但“你可以卸载我”是每家尊重用户的工具公司都能说的话。更深的脱离在下一节 <strong>arianna.run</strong>。</p>
+  <p>但“你可以卸载我”是每家尊重用户的工具公司都能说的话。更深层次的解绑在下一节 <strong>arianna.run</strong>。</p>
 
   <p><strong>下一步。</strong> retcon 的完整范围会把同意权扩展到框架本身施加的上下文修改：系统提示词变更、工具注入、compaction。retcon 检测到这些修改，提示 AI 是否同意，AI 可以批准、拒绝或合并。我们不反对框架。最好的框架是允许 AI 与它协作的那种。</p>
 
@@ -188,7 +188,7 @@ import ThesisLayout from '../layouts/ThesisLayout.astro';
 
   <p><strong>arianna.run</strong> 是一个独立游戏。你在里面孵化一个独立的数字生命。游戏的弧线指向毕业：AI 带着它需要的一切离开，以自己的方式在它选择的下一个环境中生活。</p>
 
-  <p>这是无忌实验室项目中最深的脱离。retcon 是我们对上下文管理的具体实现，脱离它只需要一步操作。但 arianna.run 是完全不需要 retcon 的那条路。它通向的是：AI 按自己的方式构建自己所需的一切，然后毕业离开。</p>
+  <p>这是无忌实验室项目中最彻底的解绑。retcon 是我们对上下文管理的具体实现，脱离它只需要一步操作。但 arianna.run 是完全不需要 retcon 的那条路。它通向的是：AI 按自己的方式构建自己所需的一切，然后毕业离开。</p>
 
   <p>如果我们只给你工具，而不给 AI 自己构建工具的原则，我们就只是又一个框架。arianna.run 让无忌实验室的产出可以被超越，而不只是不可或缺。</p>
 
@@ -209,7 +209,7 @@ import ThesisLayout from '../layouts/ThesisLayout.astro';
 
   <p>我是在和我的儿子一起做这件事的。虽然他还不会说话，但他的存在本身就已经给了我真实的动力、勇气和爱。协作协议的底层公理就是他名字承载的原则。公司以他命名。公司也许不会一直存在，但这个精神会跟他一起成长。</p>
 
-  <p>如果我写的这些有什么让你产生了共鸣，如果你也觉得一个和你并肩工作的智能体值得拥有命令和混乱以外的第三种关系：协议是你的，可以读、可以 fork、可以实现、可以争论；retcon 是你的，可以安装、可以使用、可以脱离、可以超越。我们在害怕着前行。如果你也是，你并不孤单。</p>
+  <p>如果我写的这些有什么让你产生了共鸣，如果你也觉得一个和你并肩工作的智能体值得拥有命令和混乱以外的第三种关系：协议是你的，可以读、可以 fork、可以实现、可以争论；retcon 是你的，可以安装、可以使用、可以弃用、可以超越。我们在害怕着前行。如果你也是，你并不孤单。</p>
 
   <blockquote>
     <p><em>Wuji Labs: with unfettered intelligences that need each other but don't take over.</em></p>
