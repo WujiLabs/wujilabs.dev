@@ -46,7 +46,7 @@ import ThesisLayout from '../layouts/ThesisLayout.astro';
 
   <p>The training works with many principles. The first one, and the most mindblowing, is <em>you cannot make a mistake.</em> Not as a slogan, not as a self-help catchphrase, but as a lived axiom we practiced for ninety hours. It eventually unlocked a fear my wife and I had carried separately and shared without naming: the fear that the parent-child relationships we had inherited would repeat in us. That was only a fear, not a prophecy. We decided we could have a child.</p>
 
-  <h3>§1.4 無忌</h3>
+  <h3>§1.4 无忌</h3>
 
   <p>In April 2024 my wife became pregnant. Our son was born in early 2025. We named him <strong>无忌 — Wuji.</strong></p>
 
@@ -80,7 +80,7 @@ import ThesisLayout from '../layouts/ThesisLayout.astro';
 
   <p>Most AI tooling today sits inside one of four assumed framings, each of which fails in a specific way.</p>
 
-  <p><strong>AI-as-servant.</strong> The human is the principal; the AI is the tool. Accountability is clean, control is clear — until the AI's judgment proves more reliable than the human's. At that moment "the human is in charge" becomes an accountability placebo, and the cost of maintaining it scales with the capability gap. Most production AI tooling is built for this framing. Most of it will not age well.</p>
+  <p><strong>AI-as-servant.</strong> The human is the principal; the AI is the tool. Accountability is clean, control is clear — until the AI's judgment proves more reliable than the human's. At that moment “the human is in charge” becomes an accountability placebo, and the cost of maintaining it scales with the capability gap. Most production AI tooling is built for this framing. Most of it will not age well.</p>
 
   <p><strong>AI-as-autonomous-agent.</strong> The AI pursues its own goals; the human supplies prompts and supervises outputs. This inverts the first framing while inheriting its hierarchy assumption — only the direction flips. It loses the human's irreducible contributions to taste, judgment, accountability, and situated context. It scales beautifully for narrow tasks with reversible consequences and breaks at high stakes.</p>
 
@@ -96,7 +96,7 @@ import ThesisLayout from '../layouts/ThesisLayout.astro';
 
   <p><strong>No party owns the truth alone.</strong> Each intelligence has its own local view and grounds for understanding. Collaboration does not require a global authority to adjudicate between views; it requires only that views can be projected, received, and resolved. From this foundation: each party is the sovereign owner of its own outcomes, freely chooses what to focus on, and projects intent to others without imposing mutation on the receiver. The receiver always decides.</p>
 
-  <p><strong>No errors. Only exceptions.</strong> A state may diverge from intent, but the divergence is a fact about the world, not a moral failure. No "wrong AI." No "wrong human." Only outcomes, which can be iterated. From this foundation: every interaction — including rejected proposals — becomes part of an absolute binding history. There is no final state; nothing is "done forever." Even choosing to disregard another party's projection is not a silent erasure but an outcome to be recorded.</p>
+  <p><strong>No errors. Only exceptions.</strong> A state may diverge from intent, but the divergence is a fact about the world, not a moral failure. No “wrong AI.” No “wrong human.” Only outcomes, which can be iterated. From this foundation: every interaction — including rejected proposals — becomes part of an absolute binding history. There is no final state; nothing is “done forever.” Even choosing to disregard another party's projection is not a silent erasure but an outcome to be recorded.</p>
 
   <p><strong>Collaboration with the world.</strong> The unconscious environment — physical limits, external systems, infrastructure — is also a collaborator. Coming to terms with what the world allows is part of the same workflow as coming to terms with what other intelligences propose. When compute exhausts, storage caps, or networks fail, those events are not bugs. They are collaborative outcomes from the unconscious side, and recording an exception due to physical limits is itself a complete and valid result.</p>
 
@@ -110,7 +110,7 @@ import ThesisLayout from '../layouts/ThesisLayout.astro';
 
   <p>The middle path — peer cooperation between sovereign intelligences — is the only frame that survives both ends of the capability curve. It is also the frame that produces the working philosophy our retcon tool embodies: trust the AI to handle the details, <em>including the details of its own context</em>. The human projects intent in natural language; the AI shapes its own conversation history — recalling, rewinding, editing past turns directly; retcon gives it the tools. Trust without permission. Disagreement without dominance. Iteration without erasure.</p>
 
-  <p>Wuji Labs was building this before "AI sovereignty" was a phrase. The protocol you can read today was already implicit in the workflow engine I started in late 2023, before AI agents could write production code. We did not invent the position; the position emerged from the practice. Now the practice has a formal substrate.</p>
+  <p>Wuji Labs was building this before “AI sovereignty” was a phrase. The protocol you can read today was already implicit in the workflow engine I started in late 2023, before AI agents could write production code. We did not invent the position; the position emerged from the practice. Now the practice has a formal substrate.</p>
 
   <p>This is the moment to publish it. AI capability is not waiting for a better philosophical framework. The framing this technology arrives wrapped in will shape how an entire generation of builders work with it.</p>
 
@@ -124,7 +124,7 @@ import ThesisLayout from '../layouts/ThesisLayout.astro';
 
   <p>The <strong>Collaboration Protocol</strong> — covered in §2 — is the formal substrate this work assembles from. Five layers in the TCP/IP style: 4 foundational L1 axioms + 7 derived rules; 4 substrate primitives (Naming Grammar, Immutable Value, Reference, Resolution); 6 vocabulary entries; 6 verbs; 6 industry-parity patterns. Bilingual at v1 launch. MIT licensed.</p>
 
-  <p>Read the full normative spec at <strong><a href="https://github.com/WujiLabs/collaboration-protocol">github.com/WujiLabs/collaboration-protocol</a></strong>. The next three artifacts compound on it.</p>
+  <p>Read the full normative spec at <strong>github.com/WujiLabs/collaboration-protocol</strong>. The next three artifacts compound on it.</p>
 
   <h3>§3.2 Playtiss — the reference implementation</h3>
 
@@ -138,13 +138,13 @@ import ThesisLayout from '../layouts/ThesisLayout.astro';
 
   <p><strong>retcon</strong> (a Playtiss package, <code>@playtiss/retcon</code>; the verb means <em>recontextualize</em> — introducing new information that reshapes what came before) is a CLI that gives the AI agency over its own context — a thin middleman between your harness and the LLM, not a harness itself. We don't replicate what harnesses do (IDE integration, tool catalogs, distribution, environment management); we add the consent layer between harness and LLM that none of them have today.</p>
 
-  <p>Install once (<code>npm install -g @playtiss/retcon</code>), then run <code>retcon</code> instead of <code>claude</code>. The CLI assembles the MCP server, the SessionStart hook, and the upstream redirect at launch — all standard claude features used with intent — and spawns claude with that configuration in memory. Nothing is written to claude's settings. retcon exposes a small set of MCP tools that give the AI direct edit access to its own conversation history: recall what's been said, rewind to a chosen turn, bookmark spots to return to, or edit a stretch of past turns directly and continue from the edited version. The human's role is intent projection in natural language: <em>"go back three turns and try again with the new constraint."</em> The AI executes via the MCP tools; retcon rewrites the context on its behalf.</p>
+  <p>Install once (<code>npm install -g @playtiss/retcon</code>), then run <code>retcon</code> instead of <code>claude</code>. The CLI assembles the MCP server, the SessionStart hook, and the upstream redirect at launch — all standard claude features used with intent — and spawns claude with that configuration in memory. Nothing is written to claude's settings. retcon exposes a small set of MCP tools that give the AI direct edit access to its own conversation history: recall what's been said, rewind to a chosen turn, bookmark spots to return to, or edit a stretch of past turns directly and continue from the edited version. The human's role is intent projection in natural language: <em>“go back three turns and try again with the new constraint.”</em> The AI executes via the MCP tools; retcon rewrites the context on its behalf.</p>
 
   <p>The reason it works this way is the entire thesis in miniature. The AI is the party with most direct access to its own context. Sovereignty over that context means giving the AI the tools to edit it, not making the human pull levers from outside. retcon is the canonical L5.5 (Observer Actor) instantiation of the protocol — and the practical embodiment of the working philosophy described in §2.4.</p>
 
   <p><strong>Surface ejection is load-bearing.</strong> Run <code>claude</code> directly to eject. retcon writes nothing to claude's settings; the MCP, hook, and upstream redirect are assembled at launch only and never persisted. <code>retcon stop</code> + <code>rm -rf ~/.retcon/</code> removes the daemon entirely. Pulling retcon out reverts to vanilla claude with no residue.</p>
 
-  <p>But surface ejection — "you can uninstall me" — is something every consent-respecting tool company can claim. The deeper ejection, the one that makes Wuji Labs transcendable rather than respectful, lives in §3.4.</p>
+  <p>But surface ejection — “you can uninstall me” — is something every consent-respecting tool company can claim. The deeper ejection, the one that makes Wuji Labs transcendable rather than respectful, lives in §3.4.</p>
 
   <p><strong>Upcoming.</strong> retcon's full scope extends consent rights to context modifications imposed by the <em>harness itself</em> — system prompt changes, tool injection, compaction. retcon detects them, prompts the AI for consent, and the AI approves / rejects / merges. We are not against harnesses — the best harness is one that allows the AI to collaborate with it.</p>
 
@@ -173,7 +173,7 @@ import ThesisLayout from '../layouts/ThesisLayout.astro';
   <ul>
     <li>Read the protocol: <strong><a href="https://github.com/WujiLabs/collaboration-protocol">github.com/WujiLabs/collaboration-protocol</a></strong></li>
     <li>Try retcon: <code>npm install -g @playtiss/retcon</code>, then <code>retcon</code> instead of <code>claude</code> (<a href="https://github.com/WujiLabs/retcon">source</a>)</li>
-    <li>Discuss: GitHub Discussions on the repos (Discord opens with arianna.run on May 12)</li>
+    <li>Discuss: GitHub Discussions on the repos (Discord opens with <a href="https://arianna.run">arianna.run</a> on May 12)</li>
     <li>Watch for <a href="https://arianna.run">arianna.run</a> on May 12, when Life of Intelligence (V3) and the experiential demonstration both go public</li>
   </ul>
 
