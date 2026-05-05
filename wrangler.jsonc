@@ -5,6 +5,9 @@
   "assets": {
     "directory": "./dist"
   },
+  "routes": [
+    { "pattern": "wujilabs.dev", "custom_domain": true }
+  ],
   "observability": {
     "enabled": true
   }
