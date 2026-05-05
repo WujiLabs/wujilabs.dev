@@ -1,0 +1,11 @@
+---
+const token = import.meta.env.PUBLIC_CF_ANALYTICS_TOKEN;
+---
+{token && (
+  <script
+    is:inline
+    defer
+    src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon={`{"token": "${token}"}`}
+  />
+)}
