@@ -2,5 +2,9 @@
   Content-Type: text/plain; charset=utf-8
 /thesis-zh.md
   Content-Type: text/plain; charset=utf-8
+/llms.txt
+  Content-Type: text/plain; charset=utf-8
+/llms-full.txt
+  Content-Type: text/plain; charset=utf-8
 /fonts/*
   Cache-Control: public, max-age=31536000, immutable
