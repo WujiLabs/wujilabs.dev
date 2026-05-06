@@ -44,20 +44,27 @@ def main():
     with open(SRC) as f:
         index = f.read()
 
-    seen_paths = []
+    seen = []
+    seen_paths = set()
     for m in LINK_RE.finditer(index):
-        url = m.group(2)
+        name, url = m.group(1), m.group(2)
         path = local_md_path(url)
         if path and path not in seen_paths:
-            seen_paths.append(path)
+            seen.append((name, path))
+            seen_paths.add(path)
 
     parts = [index.rstrip(), ""]
-    for path in seen_paths:
+    for name, path in seen:
         with open(path) as f:
             content = f.read().rstrip()
-        parts.append("---")
+        rel = "/" + os.path.relpath(path, PUBLIC)
+        title = name.replace('"', "&quot;")
+        parts.append("")
+        parts.append(f'<document path="{rel}" title="{title}">')
         parts.append("")
         parts.append(content)
+        parts.append("")
+        parts.append("</document>")
         parts.append("")
 
     with open(OUT, "w") as f:
