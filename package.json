@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "python3 scripts/build-llms-full.py && astro build",
     "preview": "astro preview",
     "astro": "astro",
     "sync": "python3 scripts/sync-content.py"
