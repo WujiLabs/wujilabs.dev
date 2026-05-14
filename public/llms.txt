@@ -19,7 +19,7 @@ file `/llms-full.txt` concatenates both essays inline for one-shot LLM context.
 
 - [Collaboration Protocol](https://github.com/WujiLabs/collaboration-protocol): The formal spec. Five layers — 4 L1 axioms + 7 derived rules, 4 substrate primitives, 6 vocabulary entries, 6 verbs, 6 industry-parity patterns. Bilingual at v1. MIT.
 - [retcon](https://github.com/WujiLabs/retcon): CLI that gives the AI direct edit access to its own conversation context — peer collaboration with AI in practice, not principal-and-tool. MIT, ships as `@playtiss/retcon` on npm.
-- [arianna.run](https://arianna.run): An indie game where you incubate an independent digital life. Wuji Labs's experiential answer to *what is AI life*. Launches 2026-05-12.
+- [arianna.run](https://arianna.run): An indie game where you incubate an independent digital life. Wuji Labs's experiential answer to *what is AI life*. Launched 2026-05-12.
 
 ## Optional
 
