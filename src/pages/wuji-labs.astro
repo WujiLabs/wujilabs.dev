@@ -1,15 +1,80 @@
 ---
 import ThesisLayout from '../layouts/ThesisLayout.astro';
+import PricingTable from '../components/PricingTable.astro';
 ---
 
 <ThesisLayout
   title="Wuji Labs Inc — Collaboration Spaces"
-  description="System-side: AI collaboration spaces plus the support to actually use them."
+  description="System-side: AI collaboration spaces plus the support to actually use them. Bundled with AI-relational coaching and tools training, across any AI vendor."
   lang="en"
 >
   <h1>Wuji Labs Inc — Collaboration Spaces</h1>
   <p class="meta">System-side · the bundled engagement</p>
-  <p>Bundled with the AI-relational coaching and tools training that make adoption real, across any AI vendor. For anyone losing hours to manual shuffle before getting to the work only they can do.</p>
-  <p>Detailed engagement shape, three-stage pricing, and what-you-keep specifics land in Phase 2 of the site reorg. In the meantime, the <a href="/thesis">founding thesis</a> covers the substrate this work assembles from.</p>
-  <p>For inquiries: <a href="mailto:cosimo@wujilabs.dev">cosimo@wujilabs.dev</a></p>
+
+  <p><strong>AI workflows that empower your team — not replace them.</strong></p>
+
+  <h2>What we do</h2>
+
+  <p>We work with people and teams running on tools they've cobbled together by hand — where you've hit the limit of <em>"we tried ChatGPT and it got us 60% there,"</em> and someone's still spending hours on the manual shuffle (email → docs → files) before getting to the work only they can do. You'll find that pain in a 30-person brokerage, a 5-person agency, a one-person practice — anywhere people are doing by hand what a well-built system could carry.</p>
+
+  <p>We don't just hand over a workflow. We build the missing piece as a <strong>collaboration space you own</strong> — <em>and</em> bundle the coaching + training that makes it actually get used. The human+system package, not a tool dropped on your desk. Bounded scope, defined deliverable, no subscription rent on what's already done.</p>
+
+  <h2>How an engagement runs</h2>
+
+  <p><strong>Discovery.</strong> We walk through how your team currently moves information across tools — and for compliance-sensitive work, we do this <strong>under an NDA</strong> (we need to see how you actually work to build the right thing; you can't get a useful tool from a description alone). About a week. Once the system is built, it runs <strong>locally on your hardware</strong> — we don't need access to your ongoing data, and nothing leaves your infrastructure.</p>
+
+  <p><strong>Build.</strong> We build the collaboration space (and, below, the coaching/training to use it). Typically 1–2 months, depending on scope. One thing shipped in production, used by whoever it was built for, owned by you at the end.</p>
+
+  <p><strong>On-site human-side support is part of the engagement.</strong> While embedded, I work with your team directly on two things alongside the build:</p>
+
+  <ul>
+    <li><strong>AI-relational coaching</strong> for anyone working through anxiety, distrust, or groundedness gaps with the new tools. iPEC-rooted (the household practice carries iPEC training on both sides). For staff who'd struggle to use the system otherwise, this is what makes adoption actually work.</li>
+    <li><strong>AI-tools training</strong> for the operators who'll use the new collaboration space day-to-day. Not generic prompt classes — specific training on the system we just built for your firm, so the team can self-adapt as things evolve.</li>
+  </ul>
+
+  <p>Both come bundled into the engagement at no separate cost; it's one trust relationship, one billing, one tight context. For <em>standalone</em> coaching or training with no build attached, see <a href="/cec">Core Empowering Coaching</a> — that's the household's separate practice.</p>
+
+  <h2>Three working modes</h2>
+
+  <p>How we work together at any given time. Pick the mode that fits the season; move between as the work changes. The subscription never rents you access to what's already been built — it only ever buys new work.</p>
+
+  <PricingTable />
+
+  <p class="pricing-note"><strong>Experimental pricing — no deadline.</strong> Crossed-out figures aren't a countdown; they're where the rates are grounded. Retain ≈ 1/3 of an in-house engineer's monthly cost (~$2.5k); Embed ≈ 2× Retain (~$5k). $3k / $1.5k is what we're testing at while the model is young. For engagements where the savings are cleanly measurable, part of the Embed fee can be structured around the outcome instead — your call.</p>
+
+  <p><strong>On-site vs. remote:</strong> "on-site" includes screen-share — what matters is real-time contact. If you can name what you need clearly without a session, Retain works remotely. On-site coaching for a whole team naturally runs longer than the ~1 hr/week Retain baseline — that's Embed-mode.</p>
+
+  <h2>What "Own" looks like in practice</h2>
+
+  <p>The collaboration space runs on <strong>Playtiss</strong> — our open-source substrate — on your infrastructure. The connectors we build are open-source too: you paid for the building, not for access, so nothing is held hostage. Maintain them yourself, hire us to improve them, or benefit from improvements the broader community contributes. You own the prompts. You own the engagement data. If we go quiet for a year, everything keeps running.</p>
+
+  <p>And it runs on <strong>whichever AI model gets cheaper or smarter next quarter.</strong> Anthropic today, OpenAI tomorrow, open-source local models the year after. <em>Switched models in an afternoon</em> is the killer concrete — and it's structural to how we build, not a marketing claim.</p>
+
+  <h2>Why three peer modes (not a tier list)</h2>
+
+  <p>We borrow the familiar three-column format because it's legible — but it's not a tier list. A SaaS free tier is a <em>lure</em> at the top: limited, designed to upsell you, and the company keeps your data hostage if you leave. Our $0 mode isn't an upsell-target or a destination either — it's just one of three legitimate arrangements between us at any given time. Stay in Embed for a full build; flow to Retain when work is ongoing-but-light; pause at Own when the system has settled. Move back to Retain or Embed when a new project shows up. The 互不从属 (mutual non-subordination) commitment is what makes all three peer arrangements legitimate at once — no party owes the other a continued payment to keep using what's already built. We're field engineers, not platform tenants.</p>
+
+  <h2>The household behind this</h2>
+
+  <p>Wuji Labs Inc builds substrate. What we learn in each engagement about how AI collaborates with humans gets encoded into our open-source workflow runtime (<strong>Playtiss</strong>) and the <strong>Collaboration Protocol</strong>. Every team running similar workflows inherits that learning. <em>The substrate compounds; you don't have to be on a treadmill.</em></p>
+
+  <p>The human side of the household runs through <strong>Core Empowering Coaching</strong> (<a href="/cec">/cec</a>) — co-owned 50/50 by Cosimo and his partner; both iPEC-trained. When Wuji Labs builds the workflow, CEC's AI-tools fluency teaching can train your staff to use it. Two contracts, two entities, complementary work.</p>
+
+  <p>If during discovery we surface that what your firm actually needs is the human-side work (leadership, decision-making, fluency, AI-relational), we'll say so and route you to the right place — even when that means us not selling you a workflow.</p>
+
+  <h2>Get in touch</h2>
+
+  <p><a href="mailto:cosimo@wujilabs.dev">cosimo@wujilabs.dev</a></p>
 </ThesisLayout>
+
+<style is:global>
+  .pricing-note {
+    font-family: 'Source Sans 3', sans-serif;
+    color: var(--text-3);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin-top: calc(var(--space-unit) * 3);
+    padding-left: calc(var(--space-unit) * 2);
+    border-left: 2px solid var(--rule);
+  }
+</style>

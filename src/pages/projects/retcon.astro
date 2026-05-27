@@ -9,7 +9,14 @@ import ThesisLayout from '../../layouts/ThesisLayout.astro';
 >
   <h1>retcon</h1>
   <p class="meta">The first practical instrument of AI consent over its own context</p>
-  <p><code>retcon</code> is a CLI that gives the AI direct edit access to its own conversation history. Install once (<code>npm install -g @playtiss/retcon</code>), run <code>retcon</code> instead of <code>claude</code>. The AI recalls, rewinds, bookmarks, edits its own past turns; the human's role is intent projection in natural language.</p>
-  <p>The detailed project page with thesis-layer mapping (L5.5 Observer Actor) lands in Phase 2.</p>
-  <p>Source: <a href="https://github.com/WujiLabs/retcon">github.com/WujiLabs/retcon</a> · MIT licensed.</p>
+
+  <p><code>retcon</code> (a Playtiss package, <code>@playtiss/retcon</code>; the verb means <em>recontextualize</em> — introducing new information that reshapes what came before) is a CLI that gives the AI agency over its own context. A thin middleman between your harness and the LLM, not a harness itself.</p>
+
+  <p>Install once (<code>npm install -g @playtiss/retcon</code>), then run <code>retcon</code> instead of <code>claude</code>. The CLI assembles the MCP server, the SessionStart hook, and the upstream redirect at launch — all standard claude features used with intent — and spawns claude with that configuration in memory. Nothing is written to claude's settings. <code>retcon</code> exposes a small set of MCP tools that give the AI direct edit access to its own conversation history: recall what's been said, rewind to a chosen turn, bookmark spots to return to, edit a stretch of past turns directly and continue from the edited version.</p>
+
+  <p>The human's role is intent projection in natural language: <em>"go back three turns and try again with the new constraint."</em> The AI executes via the MCP tools; <code>retcon</code> rewrites the context on its behalf.</p>
+
+  <p>This is the canonical L5.5 (Observer Actor) instantiation of the Collaboration Protocol — and the load-bearing surface on the <code>AI → people</code> dimension. <strong>Surface ejection is load-bearing.</strong> Run <code>claude</code> directly to eject. <code>retcon</code> writes nothing to claude's settings; the MCP, hook, and upstream redirect are assembled at launch only and never persisted. <code>retcon stop</code> + <code>rm -rf ~/.retcon/</code> removes the daemon entirely. Pulling <code>retcon</code> out reverts to vanilla claude with no residue.</p>
+
+  <p><a href="https://github.com/WujiLabs/retcon">github.com/WujiLabs/retcon</a> · MIT licensed.</p>
 </ThesisLayout>

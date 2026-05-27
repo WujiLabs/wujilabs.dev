@@ -9,7 +9,21 @@ import ThesisLayout from '../../layouts/ThesisLayout.astro';
 >
   <h1>Playtiss</h1>
   <p class="meta">A collaboration space for humans and AI</p>
-  <p>The Collaboration Protocol's working implementation. Where the protocol's axioms become a running substrate that humans and AI can actually use to build together. Open-source, vendor-neutral, runs on your own infrastructure when data sensitivity demands it.</p>
-  <p>The detailed project page with thesis mapping + status of the multi-agent runtime lands in Phase 2.</p>
-  <p>Source: <a href="https://github.com/WujiLabs/playtiss">github.com/WujiLabs/playtiss</a> · <code>npm install @playtiss/core</code></p>
+
+  <p>The Collaboration Protocol's working implementation. Where the protocol's axioms — <em>no party owns the truth alone</em>, <em>no errors only exceptions</em>, <em>collaboration with the world</em>, <em>change and projection are equal</em> — become a running substrate that humans and AI can actually use to build together.</p>
+
+  <h2>What Playtiss makes possible</h2>
+
+  <ul>
+    <li><strong>Compose, don't follow.</strong> Tasks aren't rigid SOPs. Each step carries an intention, not a fixed procedure. Revision history is first-class, so changes propagate without breaking upstream work.</li>
+    <li><strong>Switch substrates without losing continuity.</strong> Run a step on Claude today, swap to Gemini tomorrow, drop in a local open-source model when data sensitivity demands it. The collaboration stays consistent; the model layer is transport.</li>
+    <li><strong>Across vendors, across tools, across people.</strong> Multiple humans and multiple AIs share the same collaboration space without any one party claiming the truth.</li>
+    <li><strong>Locally deployable.</strong> For compliance-sensitive verticals — legal, healthcare, financial services — Playtiss runs on your own infrastructure with whatever local LLM you choose. Data never has to leave.</li>
+  </ul>
+
+  <h2>Status</h2>
+
+  <p>MIT-licensed core: <code>@playtiss/core</code> — the protocol's vocabulary as TypeScript types (Channel, Schema, Actor, Action, Task, Revision). Multi-agent runtime is in active development; alpha releases tracked on GitHub.</p>
+
+  <p><a href="https://github.com/WujiLabs/playtiss">github.com/WujiLabs/playtiss</a> · <code>npm install @playtiss/core</code></p>
 </ThesisLayout>

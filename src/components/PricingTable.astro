@@ -1,0 +1,128 @@
+---
+// PricingTable — the locked Variant D mockup. Three peer modes (Embed / Retain / Own),
+// equal visual weight, bidirectional ↔ arrows between. No "destination" emphasis;
+// clients move between modes as projects evolve. Widens beyond the 680px thesis
+// content-width via negative margins; stacks 1-col on mobile with arrow rotation +
+// caption glyph swap (↔ → ↕). Locked 2026-05-27 via /plan-design-review.
+//
+// Mockup reference:
+//   ~/.gstack/projects/WujiLabs-wujilabs.dev/designs/wuji-labs-pricing-20260527/
+//   variant-D-peer-modes.html
+---
+
+<div class="pricing-wrap">
+  <div class="modes">
+    <div class="mode">
+      <span class="mode-name">Embed</span>
+      <span class="mode-cost"><s>$5k</s>$3k<span class="unit">/mo</span></span>
+      <span class="mode-mode">On-site or screen-share</span>
+      <p class="mode-body">Build the collaboration space plus the coaching and tools training to use it. Real-time contact across a team. Usually 1–2 months per build, but you can stay in Embed as long as new work justifies it.</p>
+    </div>
+    <div class="arrow" aria-hidden="true">↔</div>
+    <div class="mode">
+      <span class="mode-name">Retain</span>
+      <span class="mode-cost"><s>$2.5k</s>$1.5k<span class="unit">/mo</span></span>
+      <span class="mode-mode">Remote, async</span>
+      <p class="mode-body">Ongoing changes, new connectors, evolving the space as you change. Includes about an hour a week of coaching or training. Cancel anytime; re-engage when something new comes up.</p>
+    </div>
+    <div class="arrow" aria-hidden="true">↔</div>
+    <div class="mode">
+      <span class="mode-name">Own</span>
+      <span class="mode-cost">$0<span class="unit">/mo</span></span>
+      <span class="mode-mode">Your hardware, your keys</span>
+      <p class="mode-body">Stop paying anytime and it keeps running — on your hardware, yours to keep. Nothing degrades, nothing gets locked. The 互不从属 (mutual non-subordination) commitment lives in the contract structure here, not just the marketing.</p>
+    </div>
+  </div>
+  <p class="mode-note"><span class="mode-arrow-glyph" aria-hidden="true">↔</span> Many clients flow Embed → Retain → Own as a build settles, then back to Retain or Embed when a new project shows up. The arrows are a hint, not a path.</p>
+</div>
+
+<style>
+  /* Widen beyond the thesis 680px content-width via negative margins.
+     Stays inside the article flow; no global layout change. */
+  .pricing-wrap {
+    max-width: 940px;
+    margin: calc(var(--space-unit) * 4) auto;
+    margin-left: calc((var(--content-width-thesis) - 940px) / 2);
+    margin-right: calc((var(--content-width-thesis) - 940px) / 2);
+  }
+  .modes {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+    align-items: stretch;
+    gap: 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .mode {
+    padding: calc(var(--space-unit) * 4) calc(var(--space-unit) * 3);
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--space-unit) * 1.5);
+  }
+  .mode-name {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .mode-cost {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 1.4rem;
+    color: var(--text);
+    font-weight: 600;
+    line-height: 1.1;
+  }
+  .mode-cost s { color: var(--text-3); margin-right: calc(var(--space-unit) * 0.5); font-weight: 400; font-size: 0.95rem; }
+  .mode-cost .unit { font-size: 0.85rem; color: var(--text-2); font-weight: 400; }
+  .mode-mode {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.78rem;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .mode-body {
+    font-size: 0.93rem;
+    line-height: 1.6;
+    color: var(--text-2);
+    margin-top: calc(var(--space-unit) * 0.5);
+    margin-bottom: 0;
+  }
+  /* Bidirectional ↔ arrow between columns. Subdued, decorative. */
+  .arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-3);
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 1.1rem;
+    padding: 0 calc(var(--space-unit) * 0.5);
+  }
+  .mode-note {
+    font-family: 'Source Sans 3', sans-serif;
+    color: var(--text-2);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: calc(var(--space-unit) * 2) auto 0;
+    max-width: var(--content-width-thesis);
+    font-style: italic;
+    text-align: center;
+  }
+
+  @media (max-width: 900px) {
+    .pricing-wrap { margin-left: auto; margin-right: auto; max-width: 100%; }
+    .modes { grid-template-columns: 1fr; }
+    .arrow {
+      padding: 0;
+      transform: rotate(90deg);
+      min-height: calc(var(--space-unit) * 3);
+    }
+    /* Caption arrow glyph swaps to vertical to match the rotated table arrows */
+    .mode-arrow-glyph {
+      font-size: 0;
+    }
+    .mode-arrow-glyph::before {
+      content: '↕';
+      font-size: 1rem;
+    }
+  }
+</style>
