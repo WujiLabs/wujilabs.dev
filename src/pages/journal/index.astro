@@ -1,15 +1,176 @@
 ---
 import ThesisLayout from '../../layouts/ThesisLayout.astro';
+import SubscribeBlock from '../../components/SubscribeBlock.astro';
+
+// Read the manifest produced by scripts/sync-content.py at build time.
+// Each entry is { prefix, lang, date, title, url, lang_pair_url, public_md }.
+// Entries already sorted reverse-chronological by sync-content.py.
+import manifest from '../../../public/journal/index.json';
+
+const entries = manifest.entries;
 ---
 
 <ThesisLayout
   title="Journal — Wuji Labs"
-  description="Bilingual essays from Wuji Labs. New essay every couple of weeks."
+  description="Bilingual essays from Wuji Labs. Filter by language."
   lang="en"
 >
   <h1>Journal</h1>
-  <p class="meta">Bilingual essays · ZH-first, EN within 48 hours</p>
-  <p>The journal infrastructure (dynamic <code>/journal/[slug]</code> routes, EN/ZH/all language toggle, subscribe CTA on each entry) lands in Phase 3 of the site reorg. Eight essays from the May 5 + May 12 launch weeks are already drafted and will appear here once the rendering pipeline ships.</p>
-  <p>Current inaugural choice: <em>"AI 的空头支票：别指望一个'工具'会尊重你"</em> (May 12 closing essay).</p>
-  <p>To get notified when the journal goes live: <a href="/subscribe">subscribe</a>.</p>
+  <p class="meta">Bilingual essays · roughly biweekly</p>
+
+  <p>Notes from inside the household practice. ZH-first, EN where the audience benefits — pair-translated when both make sense.</p>
+
+  <nav class="lang-filter" aria-label="Filter by language">
+    <button data-lang="all" aria-pressed="true">All</button>
+    <button data-lang="en">EN</button>
+    <button data-lang="zh">中文</button>
+  </nav>
+
+  <ul class="entries">
+    {entries.map((e) => (
+      <li class="entry" data-lang={e.lang}>
+        <a href={e.url}>
+          <span class={e.lang === 'zh' ? 'zh-title' : 'en-title'}>{e.title}</span>
+        </a>
+        <span class="entry-meta">
+          <span class="date">{e.date}</span>
+          <span class="lang-tag">{e.lang === 'zh' ? '中文' : 'EN'}</span>
+          {e.lang_pair_url && (
+            <a class="pair-link" href={e.lang_pair_url}>{e.lang === 'zh' ? 'EN' : '中文'}</a>
+          )}
+        </span>
+      </li>
+    ))}
+  </ul>
+
+  <SubscribeBlock />
 </ThesisLayout>
+
+<style is:global>
+  /* Language filter — same vocabulary as the landing dimension toggle:
+     text-only buttons, hairline underline on active, no chrome. */
+  .lang-filter {
+    display: flex;
+    gap: calc(var(--space-unit) * 3);
+    margin: calc(var(--space-unit) * 4) 0;
+    padding-bottom: calc(var(--space-unit) * 2);
+    border-bottom: 1px solid var(--rule);
+    font-family: 'Source Sans 3', 'Noto Sans SC', sans-serif;
+    font-size: 0.9rem;
+  }
+  .lang-filter button {
+    background: none;
+    border: none;
+    color: var(--text-2);
+    cursor: pointer;
+    padding: calc(var(--space-unit) * 1) 0;
+    font: inherit;
+    border-bottom: 1px solid transparent;
+    transition: color 120ms;
+  }
+  .lang-filter button:hover { color: var(--text); }
+  .lang-filter button:focus-visible {
+    outline: 2px solid var(--link);
+    outline-offset: 4px;
+  }
+  .lang-filter button[aria-pressed="true"] {
+    color: var(--text);
+    border-bottom-color: var(--text);
+  }
+
+  /* Entry list */
+  .entries {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 calc(var(--space-unit) * 4) 0;
+  }
+  .entry {
+    padding: calc(var(--space-unit) * 2.5) 0;
+    border-bottom: 1px solid var(--rule);
+    transition: opacity 200ms;
+  }
+  .entry.is-dim {
+    opacity: 0.22;
+    pointer-events: none;
+  }
+  .entry a {
+    color: var(--text);
+    text-decoration: none;
+  }
+  .entry a:hover .zh-title,
+  .entry a:hover .en-title {
+    color: var(--link);
+  }
+  .entry .zh-title {
+    display: block;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.1rem;
+    line-height: 1.4;
+  }
+  .entry .en-title {
+    display: block;
+    font-family: 'Source Serif 4', serif;
+    font-size: 1.1rem;
+    line-height: 1.4;
+  }
+  .entry-meta {
+    display: flex;
+    gap: calc(var(--space-unit) * 1.5);
+    align-items: center;
+    margin-top: calc(var(--space-unit) * 1);
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.8rem;
+    color: var(--text-3);
+  }
+  .entry-meta .lang-tag {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .entry-meta .pair-link {
+    color: var(--text-2);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1px;
+  }
+  .entry-meta .pair-link:hover {
+    color: var(--link);
+    border-bottom-color: var(--link);
+  }
+
+  @media (max-width: 480px) {
+    .lang-filter button { min-height: 44px; padding: calc(var(--space-unit) * 1.5) 0; }
+  }
+</style>
+
+<script>
+  // Filter behavior: clicking a lang button dims off-lang entries via opacity.
+  // URL hash (#en, #zh, #all) makes views shareable. Default: all.
+  // Degrades cleanly without JS: all entries visible, hash ignored.
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.lang-filter button');
+  const entries = document.querySelectorAll<HTMLElement>('.entry');
+
+  function applyFilter(lang: string) {
+    buttons.forEach((b) =>
+      b.setAttribute('aria-pressed', String(b.dataset.lang === lang))
+    );
+    entries.forEach((e) => {
+      const matches = lang === 'all' || e.dataset.lang === lang;
+      e.classList.toggle('is-dim', !matches);
+    });
+    if (lang === 'all') {
+      history.replaceState(null, '', location.pathname);
+    } else {
+      history.replaceState(null, '', `#${lang}`);
+    }
+  }
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => applyFilter(btn.dataset.lang || 'all'));
+  });
+
+  // Read initial state from URL hash
+  const initialHash = location.hash.replace('#', '');
+  if (initialHash === 'en' || initialHash === 'zh') {
+    applyFilter(initialHash);
+  }
+</script>

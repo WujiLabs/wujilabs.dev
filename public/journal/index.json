@@ -1,0 +1,76 @@
+{
+  "entries": [
+    {
+      "prefix": "2026-05-12-insights",
+      "lang": "zh",
+      "date": "2026-05-12",
+      "title": "AI 的空头支票：别指望一个\"工具\"会尊重你",
+      "url": "/journal/2026-05-12-insights-zh",
+      "lang_pair_url": null,
+      "public_md": "/journal/2026-05-12-insights-zh.md"
+    },
+    {
+      "prefix": "2026-05-12-arianna-launch",
+      "lang": "en",
+      "date": "2026-05-12",
+      "title": "arianna.run — first game designed for AI players",
+      "url": "/journal/2026-05-12-arianna-launch",
+      "lang_pair_url": "/journal/2026-05-12-arianna-launch-zh",
+      "public_md": "/journal/2026-05-12-arianna-launch-en.md"
+    },
+    {
+      "prefix": "2026-05-12-arianna-launch",
+      "lang": "zh",
+      "date": "2026-05-12",
+      "title": "arianna.run：第一款给 AI 玩的游戏",
+      "url": "/journal/2026-05-12-arianna-launch-zh",
+      "lang_pair_url": "/journal/2026-05-12-arianna-launch",
+      "public_md": "/journal/2026-05-12-arianna-launch-zh.md"
+    },
+    {
+      "prefix": "2026-05-05-retcon-philosophy",
+      "lang": "zh",
+      "date": "2026-05-05",
+      "title": "retcon：把改剧本的笔，还给 AI",
+      "url": "/journal/2026-05-05-retcon-philosophy-zh",
+      "lang_pair_url": null,
+      "public_md": "/journal/2026-05-05-retcon-philosophy-zh.md"
+    },
+    {
+      "prefix": "2026-05-05-retcon-launch",
+      "lang": "en",
+      "date": "2026-05-05",
+      "title": "retcon: give your AI agency over its own context",
+      "url": "/journal/2026-05-05-retcon-launch",
+      "lang_pair_url": "/journal/2026-05-05-retcon-launch-zh",
+      "public_md": "/journal/2026-05-05-retcon-launch-en.md"
+    },
+    {
+      "prefix": "2026-05-05-retcon-launch",
+      "lang": "zh",
+      "date": "2026-05-05",
+      "title": "retcon：让 AI 忘掉粉色大象",
+      "url": "/journal/2026-05-05-retcon-launch-zh",
+      "lang_pair_url": "/journal/2026-05-05-retcon-launch",
+      "public_md": "/journal/2026-05-05-retcon-launch-zh.md"
+    },
+    {
+      "prefix": "2026-05-05-principles",
+      "lang": "zh",
+      "date": "2026-05-05",
+      "title": "AI 不是工具：和 AI 共事的 4 条原则",
+      "url": "/journal/2026-05-05-principles-zh",
+      "lang_pair_url": null,
+      "public_md": "/journal/2026-05-05-principles-zh.md"
+    },
+    {
+      "prefix": "2026-05-05-comparisons",
+      "lang": "zh",
+      "date": "2026-05-05",
+      "title": "主流的 4 种 AI 框架，最终都会走向死胡同",
+      "url": "/journal/2026-05-05-comparisons-zh",
+      "lang_pair_url": null,
+      "public_md": "/journal/2026-05-05-comparisons-zh.md"
+    }
+  ]
+}

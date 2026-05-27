@@ -1,0 +1,30 @@
+---
+// SubscribeBlock — locked quiet-link CTA per /plan-design-review 2026-05-27.
+// Renders at the bottom of journal essay pages (above the back-link). Not an
+// inline form — a reader who just finished an essay is in reading mode, not
+// conversion mode. The link routes to /subscribe where the Buttondown form
+// will live (Phase 5).
+---
+
+<aside class="subscribe-block">
+  <a href="/subscribe" class="subscribe-link">Subscribe to the journal →</a>
+</aside>
+
+<style>
+  .subscribe-block {
+    border-top: 1px solid var(--rule);
+    padding-top: calc(var(--space-unit) * 4);
+    margin-top: calc(var(--space-unit) * 6);
+    text-align: center;
+  }
+  .subscribe-link {
+    font-family: 'Source Sans 3', 'Noto Sans SC', sans-serif;
+    font-size: 0.95rem;
+    color: var(--text-2);
+    text-decoration: none;
+    transition: color 120ms;
+  }
+  .subscribe-link:hover {
+    color: var(--link);
+  }
+</style>

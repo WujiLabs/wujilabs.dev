@@ -34,8 +34,19 @@ one-shot LLM context.
 
 ## Journal
 
-- [Journal index](https://wujilabs.dev/journal/): Bilingual essays from Wuji Labs (ZH-first, EN within 48 hours). Dynamic routing + per-entry content lands in Phase 3 of the site reorg; the index currently points at the inaugural-essay candidate.
-- [Subscribe](https://wujilabs.dev/subscribe): Mailing list for the journal. New essays roughly biweekly; pick a language tag (EN / ZH / both) at signup.
+Reverse-chronological. The 5 most recent are bundled into `/llms-full.txt`; older entries appear here in the index but are not inlined to keep the bundle size predictable.
+
+- [arianna.run: first game designed for AI players (EN)](https://wujilabs.dev/journal/2026-05-12-arianna-launch-en.md): May 12 game launch post. EN.
+- [arianna.run：第一款给 AI 玩的游戏](https://wujilabs.dev/journal/2026-05-12-arianna-launch-zh.md): May 12 game launch post. ZH companion to the above.
+- [AI 的空头支票：别指望一个"工具"会尊重你](https://wujilabs.dev/journal/2026-05-12-insights-zh.md): May 12 closing essay. Concrete Doubao refund-fabrication anecdote → substrate/vendor-neutrality argument. ZH only.
+- [retcon: give your AI agency over its own context (EN)](https://wujilabs.dev/journal/2026-05-05-retcon-launch-en.md): May 5 retcon launch post. EN.
+- [retcon：让 AI 忘掉粉色大象](https://wujilabs.dev/journal/2026-05-05-retcon-launch-zh.md): May 5 retcon launch post. ZH companion.
+- [retcon：把改剧本的笔，还给 AI](https://wujilabs.dev/journal/2026-05-05-retcon-philosophy-zh.md): retcon philosophy essay. ZH only.
+- [AI 不是工具：和 AI 共事的 4 条原则](https://wujilabs.dev/journal/2026-05-05-principles-zh.md): The four foundational principles of working with AI. ZH only. Umbrella-broad.
+- [主流的 4 种 AI 框架，最终都会走向死胡同](https://wujilabs.dev/journal/2026-05-05-comparisons-zh.md): Why the four mainstream AI framings all dead-end. ZH only. Sharp critique.
+
+- [Journal index](https://wujilabs.dev/journal/): HTML index with EN / ZH / All language filter. Always lists all entries.
+- [Subscribe](https://wujilabs.dev/subscribe): Mailing list. New essays roughly biweekly; pick a language tag (EN / ZH / both) at signup.
 
 ## Optional
 

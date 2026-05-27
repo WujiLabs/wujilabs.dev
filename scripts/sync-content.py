@@ -1,18 +1,28 @@
 #!/usr/bin/env python3
 """
-Sync thesis content from source markdown to Astro pages and public/ raw copies.
+Sync thesis + journal content from source markdown to Astro pages and public/ raw copies.
 
 Usage:
-  python3 scripts/sync-content.py          # sync both EN and ZH
-  python3 scripts/sync-content.py zh       # sync ZH only
-  python3 scripts/sync-content.py en       # sync EN only
+  python3 scripts/sync-content.py              # sync everything (thesis + journal)
+  python3 scripts/sync-content.py thesis       # sync only the thesis (both EN + ZH)
+  python3 scripts/sync-content.py zh           # sync thesis ZH only (legacy shorthand)
+  python3 scripts/sync-content.py en           # sync thesis EN only (legacy shorthand)
+  python3 scripts/sync-content.py journal      # sync only journal entries
 
-Source: ~/wujilabs/launch-2026-05-01/thesis-draft-{en,zh}.md
-Targets:
-  src/pages/thesis.astro, src/pages/thesis-zh.astro   (HTML rendering)
-  public/thesis.md, public/thesis-zh.md               (raw markdown for AI access)
+Thesis source: ~/wujilabs/launch-2026-05-01/thesis-draft-{en,zh}.md
+Thesis targets:
+  src/pages/thesis.astro, src/pages/thesis-zh.astro
+  public/thesis.md, public/thesis-zh.md
+
+Journal source: ~/wujilabs/journal/[YYYY-MM-DD]-[slug]-{en,zh}.md
+Journal targets:
+  src/pages/journal/[prefix].astro          (EN, e.g. /journal/2026-05-05-retcon-launch)
+  src/pages/journal/[prefix]-zh.astro       (ZH, e.g. /journal/2026-05-05-retcon-launch-zh)
+  public/journal/[prefix]-{en,zh}.md        (raw markdown for AI access)
+  public/journal/index.json                 (manifest read by /journal/ index page)
 """
 
+import json
 import re
 import sys
 import os
@@ -21,6 +31,9 @@ import shutil
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 SITE_DIR = os.path.dirname(SCRIPT_DIR)
 SOURCE_DIR = os.path.expanduser("~/wujilabs/launch-2026-05-01")
+JOURNAL_SOURCE_DIR = os.path.expanduser("~/wujilabs/journal")
+JOURNAL_OUT_PAGES = os.path.join(SITE_DIR, "src/pages/journal")
+JOURNAL_OUT_PUBLIC = os.path.join(SITE_DIR, "public/journal")
 
 CONFIGS = {
     "en": {
@@ -312,18 +325,254 @@ def sync(lang):
     return True
 
 
+# ===========================================================================
+# JOURNAL SYNC
+#
+# Pipeline per source file ~/wujilabs/journal/<prefix>-<lang>.md:
+#   1. Parse filename into (prefix, lang). E.g. 2026-05-12-insights-zh.md
+#      → prefix="2026-05-12-insights", lang="zh".
+#   2. Extract date (first YYYY-MM-DD) and slug (the rest of the prefix).
+#   3. Parse markdown via the existing thesis parser.
+#   4. Detect language pair: if both <prefix>-en.md and <prefix>-zh.md exist,
+#      write a langPair URL pointer in each generated .astro frontmatter.
+#   5. Render .astro per essay → src/pages/journal/<prefix>{,-zh}.astro
+#   6. Copy raw .md → public/journal/<prefix>-<lang>.md (for LLM access)
+#   7. After processing all entries, write public/journal/index.json manifest.
+# ===========================================================================
+
+JOURNAL_FILENAME_RE = re.compile(r'^(\d{4}-\d{2}-\d{2})-(.+)-(en|zh)\.md$')
+
+
+def parse_journal_filename(name):
+    """('2026-05-12-insights-zh.md') → ('2026-05-12', 'insights', 'zh') or None."""
+    m = JOURNAL_FILENAME_RE.match(name)
+    if not m:
+        return None
+    return (m.group(1), m.group(2), m.group(3))
+
+
+def journal_url(prefix, lang):
+    """URL pattern per /plan-design-review lock: EN = /journal/<prefix>, ZH = /journal/<prefix>-zh."""
+    return f"/journal/{prefix}" if lang == "en" else f"/journal/{prefix}-zh"
+
+
+def render_journal_astro(title, meta_lines, last_meta_raw, blocks, *, lang, lang_pair_url):
+    """Render a journal-entry .astro. Like render_astro, but:
+       - imports paths are ../../layouts/ + ../../components/ (nested route)
+       - embeds <SubscribeBlock /> before the back-link
+       - if lang_pair_url is set, renders the cross-language toggle in the meta line
+    """
+    indent = '  '
+    parts = []
+
+    description = title  # short, page-specific; index manifest carries the full title
+
+    parts.append('---')
+    parts.append("import ThesisLayout from '../../layouts/ThesisLayout.astro';")
+    parts.append("import SubscribeBlock from '../../components/SubscribeBlock.astro';")
+    parts.append('---')
+    parts.append('')
+    parts.append('<ThesisLayout')
+    parts.append(f'  title="{_escape_attr(title)}"')
+    parts.append(f'  description="{_escape_attr(description)}"')
+    parts.append(f'  lang="{"zh-Hans" if lang == "zh" else "en"}"')
+    parts.append('>')
+    parts.append(f'{indent}<h1>{title}</h1>')
+
+    # Meta line(s). Always includes the dated byline. Cross-language toggle appended when pair exists.
+    meta_html_parts = []
+    if meta_lines:
+        meta_html_parts.append('<br />'.join(meta_lines))
+    if lang_pair_url:
+        other_lang_label = 'EN' if lang == 'zh' else '中文'
+        toggle = f'<a href="{lang_pair_url}" class="lang-toggle">{other_lang_label}</a>'
+        meta_html_parts.append(toggle)
+    if meta_html_parts:
+        parts.append(f'{indent}<p class="meta">{" · ".join(meta_html_parts)}</p>')
+    parts.append('')
+
+    for block in blocks:
+        btype = block[0]
+        if btype == 'hr':
+            parts.append(f'{indent}<hr />')
+            parts.append('')
+        elif btype == 'h2':
+            parts.append(f'{indent}<h2>{block[1]}</h2>')
+            parts.append('')
+        elif btype == 'h3':
+            parts.append(f'{indent}<h3>{block[1]}</h3>')
+            parts.append('')
+        elif btype == 'p':
+            parts.append(f'{indent}<p>{convert_inline(block[1])}</p>')
+            parts.append('')
+        elif btype == 'ul':
+            parts.append(f'{indent}<ul>')
+            for item in block[1]:
+                parts.append(f'{indent}  <li>{convert_inline(item, autolink=True)}</li>')
+            parts.append(f'{indent}</ul>')
+            parts.append('')
+        elif btype == 'blockquote':
+            parts.append(f'{indent}<blockquote>')
+            for line in block[1]:
+                parts.append(f'{indent}  <p>{convert_inline(line)}</p>')
+            parts.append(f'{indent}</blockquote>')
+            parts.append('')
+
+    # Optional trailing meta + subscribe block. The thesis layout adds its own
+    # back-link automatically; SubscribeBlock sits above it.
+    if last_meta_raw:
+        parts.append(f'{indent}<hr />')
+        parts.append('')
+        parts.append(f'{indent}<p class="meta">{convert_inline(last_meta_raw, autolink=True)}</p>')
+
+    parts.append(f'{indent}<SubscribeBlock />')
+    parts.append('</ThesisLayout>')
+    parts.append('')
+
+    # Minor CSS for the lang-toggle anchor in the meta line. Inline + scoped
+    # to this page only; doesn't pollute the global design system.
+    parts.append('<style is:global>')
+    parts.append('  .meta .lang-toggle {')
+    parts.append('    color: var(--text-2);')
+    parts.append('    text-decoration: none;')
+    parts.append('    border-bottom: 1px solid var(--rule);')
+    parts.append('  }')
+    parts.append('  .meta .lang-toggle:hover {')
+    parts.append('    color: var(--link);')
+    parts.append('    border-bottom-color: var(--link);')
+    parts.append('  }')
+    parts.append('</style>')
+
+    return '\n'.join(parts)
+
+
+def sync_journal():
+    """Sync all journal entries from ~/wujilabs/journal/."""
+    if not os.path.isdir(JOURNAL_SOURCE_DIR):
+        print(f'  ERROR: journal source dir not found: {JOURNAL_SOURCE_DIR}')
+        return False
+
+    # Inventory: parse all source files first to detect language pairs.
+    entries = []  # list of dicts: {prefix, lang, date, slug, source}
+    for name in sorted(os.listdir(JOURNAL_SOURCE_DIR)):
+        parsed = parse_journal_filename(name)
+        if not parsed:
+            continue  # skip README.md, drafts/, etc.
+        date, slug_rest, lang = parsed
+        prefix = f"{date}-{slug_rest}"
+        entries.append({
+            'prefix': prefix,
+            'lang': lang,
+            'date': date,
+            'slug': slug_rest,
+            'source': os.path.join(JOURNAL_SOURCE_DIR, name),
+        })
+
+    if not entries:
+        print('  (no journal entries to sync)')
+        return True
+
+    # Pair detection: prefix → set of langs present
+    prefix_to_langs = {}
+    for e in entries:
+        prefix_to_langs.setdefault(e['prefix'], set()).add(e['lang'])
+
+    # Ensure output dirs exist.
+    os.makedirs(JOURNAL_OUT_PAGES, exist_ok=True)
+    os.makedirs(JOURNAL_OUT_PUBLIC, exist_ok=True)
+
+    manifest_entries = []
+    for e in entries:
+        with open(e['source'], 'r') as f:
+            source = f.read()
+
+        title, meta_lines, last_meta_raw, blocks = parse_markdown(source)
+        if not title:
+            print(f"  WARN: no title in {e['source']}, skipping")
+            continue
+
+        # Determine lang pair URL
+        langs_present = prefix_to_langs[e['prefix']]
+        lang_pair_url = None
+        if 'en' in langs_present and 'zh' in langs_present:
+            other = 'zh' if e['lang'] == 'en' else 'en'
+            lang_pair_url = journal_url(e['prefix'], other)
+
+        astro = render_journal_astro(
+            title, meta_lines, last_meta_raw, blocks,
+            lang=e['lang'],
+            lang_pair_url=lang_pair_url,
+        )
+
+        # Output filename: EN = <prefix>.astro, ZH = <prefix>-zh.astro
+        astro_name = f"{e['prefix']}.astro" if e['lang'] == 'en' else f"{e['prefix']}-zh.astro"
+        astro_path = os.path.join(JOURNAL_OUT_PAGES, astro_name)
+        with open(astro_path, 'w') as f:
+            f.write(astro)
+
+        # Raw markdown copy for LLM access
+        public_name = f"{e['prefix']}-{e['lang']}.md"
+        public_path = os.path.join(JOURNAL_OUT_PUBLIC, public_name)
+        shutil.copy2(e['source'], public_path)
+
+        print(f"  {astro_path}")
+        print(f"  {public_path}")
+
+        manifest_entries.append({
+            'prefix': e['prefix'],
+            'lang': e['lang'],
+            'date': e['date'],
+            'title': title,
+            'url': journal_url(e['prefix'], e['lang']),
+            'lang_pair_url': lang_pair_url,
+            'public_md': f"/journal/{public_name}",
+        })
+
+    # Sort manifest reverse-chronological for the index page.
+    manifest_entries.sort(key=lambda x: (x['date'], x['prefix']), reverse=True)
+
+    manifest_path = os.path.join(JOURNAL_OUT_PUBLIC, 'index.json')
+    with open(manifest_path, 'w') as f:
+        json.dump({'entries': manifest_entries}, f, indent=2, ensure_ascii=False)
+    print(f'  {manifest_path}')
+
+    return True
+
+
 def main():
-    targets = sys.argv[1:] if len(sys.argv) > 1 else ['en', 'zh']
+    args = sys.argv[1:]
+    if not args:
+        targets = ['thesis', 'journal']
+    elif args == ['thesis']:
+        targets = ['thesis']
+    elif args == ['journal']:
+        targets = ['journal']
+    elif all(a in CONFIGS for a in args):
+        # legacy: `sync-content.py zh` / `en` / `en zh`
+        targets = [('thesis-' + a) for a in args]
+    else:
+        print('Unknown target(s):', args)
+        print('Usage:')
+        print('  sync-content.py                # everything')
+        print('  sync-content.py thesis         # thesis EN + ZH')
+        print('  sync-content.py journal        # journal entries')
+        print('  sync-content.py en             # thesis EN (legacy)')
+        print('  sync-content.py zh             # thesis ZH (legacy)')
+        sys.exit(1)
 
-    for lang in targets:
-        if lang not in CONFIGS:
-            print(f'Unknown target: {lang}. Use "en" or "zh".')
-            sys.exit(1)
-
-    print('Syncing thesis content...')
-    for lang in targets:
-        print(f'\n[{lang.upper()}]')
-        sync(lang)
+    print('Syncing content...')
+    for t in targets:
+        if t == 'thesis':
+            for lang in ['en', 'zh']:
+                print(f'\n[THESIS {lang.upper()}]')
+                sync(lang)
+        elif t == 'journal':
+            print(f'\n[JOURNAL]')
+            sync_journal()
+        elif t.startswith('thesis-'):
+            lang = t.split('-', 1)[1]
+            print(f'\n[THESIS {lang.upper()}]')
+            sync(lang)
 
     print('\nDone. Run `bun run dev` to verify.')
 
