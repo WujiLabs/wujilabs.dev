@@ -1,26 +1,42 @@
 # Wuji Labs
 
-> Wuji Labs Inc. is Cosimo Wei's one-person company. He is a CS PhD and a
-> trained life coach — exploring alongside both human and AI lives, trusting
-> that each party's own capacity exceeds what it shows. The work proposes
-> peer collaboration between sovereign intelligences: humans and AI as equals,
-> neither commanding nor commanded.
+> Wuji Labs is the household practice of Cosimo Wei — a Delaware C-Corp
+> (Wuji Labs Inc) plus a 50/50-owned coaching LLC (Core Empowering Coaching).
+> Cosimo is a CS PhD and trained life coach, exploring alongside both human
+> and AI lives, trusting that each party's own capacity exceeds what it shows.
+> The work proposes peer collaboration between sovereign intelligences:
+> humans and AI as equals, neither commanding nor commanded.
 
-This site hosts the founding thesis (English and Chinese editions, companion
-essays — not translations) and links to the company's open work. A companion
-file `/llms-full.txt` concatenates both essays inline for one-shot LLM context.
+This site is the umbrella surface for the household. Hero claim: *a substrate
+for intelligences — people · AI — across any vendor*. An interactive four-
+dimension toggle on the landing demonstrates which surfaces operate on which
+directional vector (`people ↔ people`, `people → AI`, `AI → people`, `AI ↔ AI`).
+A companion file `/llms-full.txt` concatenates the linked essays inline for
+one-shot LLM context.
 
 ## Thesis
 
 - [Thesis (English)](https://wujilabs.dev/thesis.md): "Wuji Labs: with unfettered intelligences that need each other but don't take over." Long-form essay on the protocol-sovereignty model of human–AI collaboration. Authored collaboratively by Cosimo Wei with Claude Opus 4.7 and Gemini Pro 3.1, 2026-05-05.
 - [论文 (中文)](https://wujilabs.dev/thesis-zh.md): "AI 正在让你变成工具人，但这并不是 AI 的错。" Chinese-language companion essay — different framing, same thesis.
 
-## Projects
+## Household surfaces
 
-- [Collaboration Protocol](https://github.com/WujiLabs/collaboration-protocol): The formal spec. Five layers — 4 L1 axioms + 7 derived rules, 4 substrate primitives, 6 vocabulary entries, 6 verbs, 6 industry-parity patterns. Bilingual at v1. MIT.
-- [retcon](https://github.com/WujiLabs/retcon): CLI that gives the AI direct edit access to its own conversation context — peer collaboration with AI in practice, not principal-and-tool. MIT, ships as `@playtiss/retcon` on npm.
-- [arianna.run](https://arianna.run): An indie game where you incubate an independent digital life. Wuji Labs's experiential answer to *what is AI life*. Launched 2026-05-12.
+- [Wuji Labs Inc — Collaboration Spaces](https://wujilabs.dev/wuji-labs): System-side engagement. AI collaboration spaces bundled with AI-relational coaching and tools training, across any AI vendor. For anyone losing hours to manual shuffle before the work only they can do.
+- [Core Empowering Coaching (CEC)](https://wujilabs.dev/cec): Human-side household practice. Three modalities — iPEC-rooted life & leadership coaching, AI-relational coaching, AI-tools fluency teaching. Co-owned 50/50 by Cosimo and his partner; both iPEC-trained. Full info at [coreempowering.coach](https://coreempowering.coach).
+- [About](https://wujilabs.dev/about): The two-entity household, AI co-authorship policy, founder background.
+
+## Projects (open work)
+
+- [Collaboration Protocol](https://wujilabs.dev/projects/collaboration-protocol): The formal spec. Five layers — 4 L1 axioms + 7 derived rules, 4 substrate primitives, 6 vocabulary entries, 6 verbs, 6 industry-parity patterns. Bilingual at v1. MIT. Source at [github.com/WujiLabs/collaboration-protocol](https://github.com/WujiLabs/collaboration-protocol).
+- [retcon](https://wujilabs.dev/projects/retcon): CLI that gives the AI direct edit access to its own conversation context — peer collaboration with AI in practice, not principal-and-tool. MIT, ships as `@playtiss/retcon` on npm. Source at [github.com/WujiLabs/retcon](https://github.com/WujiLabs/retcon).
+- [arianna.run](https://wujilabs.dev/projects/arianna): An indie game where an AI incubates an independent digital life. The household's experiential answer to *what is AI life*. Launched 2026-05-12. Play at [arianna.run](https://arianna.run).
+- [Playtiss](https://wujilabs.dev/projects/playtiss): The Collaboration Protocol's working implementation. Open-source, vendor-neutral, locally deployable for compliance-sensitive verticals. Source at [github.com/WujiLabs/playtiss](https://github.com/WujiLabs/playtiss).
+
+## Journal
+
+- [Journal index](https://wujilabs.dev/journal/): Bilingual essays from Wuji Labs (ZH-first, EN within 48 hours). Dynamic routing + per-entry content lands in Phase 3 of the site reorg; the index currently points at the inaugural-essay candidate.
+- [Subscribe](https://wujilabs.dev/subscribe): Mailing list for the journal. New essays roughly biweekly; pick a language tag (EN / ZH / both) at signup.
 
 ## Optional
 
-- [Site source](https://github.com/WujiLabs/wujilabs.dev): Astro source for this site, including the raw markdown of the thesis.
+- [Site source](https://github.com/WujiLabs/wujilabs.dev): Astro source for this site, including the raw markdown of the thesis and the design system at [DESIGN.md](https://github.com/WujiLabs/wujilabs.dev/blob/main/DESIGN.md).

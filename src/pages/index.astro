@@ -1,22 +1,161 @@
 ---
 import LandingLayout from '../layouts/LandingLayout.astro';
+
+interface Card {
+  title: string;
+  body: string;
+  href: string;
+  dims: string;
+}
+
+// 8 umbrella surfaces. `dims` is a space-separated list of dimension codes:
+//   hh = people ↔ people
+//   ha = people → AI
+//   ah = AI → people
+//   aa = AI ↔ AI
+// Card titles use em-dash separator for compound names (DESIGN.md house style).
+const cards: Card[] = [
+  {
+    title: 'Wuji Labs Inc — Collaboration Spaces',
+    body: 'Bundled with the AI-relational coaching and tools training that make adoption real, across any AI vendor. For anyone losing hours to manual shuffle before getting to the work only they can do.',
+    href: '/wuji-labs',
+    dims: 'hh ha ah aa',
+  },
+  {
+    title: 'CEC — Life & Leadership Coaching',
+    body: "iPEC-rooted coaching. The household practice's original baseline — humans grow with each other, and the practice is older than any technology stack.",
+    href: '/cec',
+    dims: 'hh',
+  },
+  {
+    title: 'AI-Relational Coaching',
+    body: 'For the specifically modern problem: anxiety, trust, groundedness toward AI. How your relationship to AI shapes what you can build with it.',
+    href: '/cec',
+    dims: 'ha',
+  },
+  {
+    title: 'AI-Tools Fluency Teaching',
+    body: 'Hands-on Claude Code + agent-skill basics. A person learns to communicate with AI the same way a person learns to communicate with another person.',
+    href: '/cec',
+    dims: 'hh ha',
+  },
+  {
+    title: 'Collaboration Protocol',
+    body: 'The substrate everything else assembles from. A formal MIT-licensed protocol for collaboration between sovereign intelligences — four foundational axioms, seven derived rules, five layers.',
+    href: '/projects/collaboration-protocol',
+    dims: 'hh ha ah aa',
+  },
+  {
+    title: 'retcon',
+    body: 'A CLI that gives the AI direct edit access to its own conversation history. The first practical instrument of AI consent over its own context.',
+    href: '/projects/retcon',
+    dims: 'ha ah',
+  },
+  {
+    title: 'arianna.run',
+    body: 'An indie game where an AI incubates an independent digital life. A graduating AI walks away with its own understanding and control of its life.',
+    href: '/projects/arianna',
+    dims: 'ah',
+  },
+  {
+    title: 'Playtiss',
+    body: "The Collaboration Protocol's working implementation. Open-source, vendor-neutral, runs on your own infrastructure when data sensitivity demands it.",
+    href: '/projects/playtiss',
+    dims: 'hh ha ah aa',
+  },
+];
+
+// 3 most-recent journal essays. Hardcoded for Phase 1; Phase 3 makes this
+// data-driven via scripts/sync-content.py + content collection.
+const recentJournal = [
+  {
+    href: '/journal/2026-05-12-insights',
+    zh: 'AI 的空头支票：别指望一个"工具"会尊重你',
+    en: 'The empty promise of AI: don’t expect a "tool" to respect you',
+    date: '2026-05-12',
+  },
+  {
+    href: '/journal/2026-05-05-retcon-philosophy',
+    zh: 'retcon：把改剧本的笔，还给 AI',
+    en: 'retcon: hand the script-editing pen back to the AI',
+    date: '2026-05-05',
+  },
+  {
+    href: '/journal/2026-05-05-comparisons',
+    zh: '主流的 4 种 AI 框架，最终都会走向死胡同',
+    en: 'The four mainstream AI frameworks all dead-end',
+    date: '2026-05-05',
+  },
+];
 ---
 
 <LandingLayout
   title="Wuji Labs"
-  description="With unfettered intelligences that need each other but don't take over."
+  description="A substrate for intelligences — people · AI — across any vendor."
 >
-  <div class="seal">无忌</div>
-  <h1 class="company-name">Wuji Labs</h1>
-  <p class="tagline">with unfettered intelligences that<br />need each other but don't take over.</p>
-  <hr class="divider" />
-  <nav>
-    <ul class="nav">
-      <li><a href="/thesis">Thesis</a> · <a href="/thesis-zh">论文</a></li>
-      <li><a href="https://github.com/WujiLabs/collaboration-protocol">Collaboration Protocol</a></li>
-      <li><a href="https://github.com/WujiLabs/retcon">retcon</a></li>
-      <li><a href="https://arianna.run">arianna.run</a></li>
-    </ul>
+  <header>
+    <div class="seal">无忌</div>
+    <h1 class="wordmark">Wuji Labs</h1>
+    <p class="substrate">A substrate for intelligences.</p>
+    <p class="scope">people · AI — across any vendor</p>
+  </header>
+
+  <nav class="toggle" aria-label="Dimensions">
+    <button data-dim="hh">people ↔ people</button>
+    <button data-dim="ha">people → AI</button>
+    <button data-dim="ah">AI → people</button>
+    <button data-dim="aa">AI ↔ AI</button>
+    <button data-dim="all" aria-pressed="true">all</button>
   </nav>
-  <p class="footer">2026. MIT licensed.</p>
+
+  <div class="framings" aria-live="polite">
+    <p class="framing" data-for="all">Practices and artifacts, projections of one substrate across four dimensions.</p>
+    <p class="framing" data-for="hh">How humans grow with each other in the AI era — coaching, leadership, communication that doesn't go away when AI shows up.</p>
+    <p class="framing" data-for="ha">How a person engages AI — designing workflows, building the craft of communicating with AI, finding groundedness with these new tools.</p>
+    <p class="framing" data-for="ah">How AI shows up as a sovereign peer with its own agency, context, and continuity — because something that's only a tool can't choose to help. The structurally distinctive column Wuji Labs operates on.</p>
+    <p class="framing" data-for="aa">When intelligences talk to each other — the formal protocol and substrate that lets multiple AIs collaborate as peers, not as subordinated parts.</p>
+  </div>
+
+  <section class="cards">
+    {cards.map((c) => (
+      <article class="card" data-dims={c.dims}>
+        <h3><a href={c.href}>{c.title}</a></h3>
+        <p>{c.body}</p>
+      </article>
+    ))}
+  </section>
+
+  <section class="journal">
+    <p class="section-label">Recent journal</p>
+    {recentJournal.map((j) => (
+      <div class="journal-item">
+        <a href={j.href}>
+          <span class="zh">{j.zh}</span>
+          <span class="en">{j.en}</span>
+        </a>
+        <span class="date">{j.date}</span>
+      </div>
+    ))}
+  </section>
+
+  <section class="signup">
+    <p class="section-label util">Subscribe</p>
+    <p>New essay every couple of weeks. Bilingual; pick a language tag.</p>
+    <form action="/subscribe" method="get">
+      <input type="email" name="email" placeholder="you@somewhere.com" aria-label="email" />
+      <span class="lang-pref">
+        <label><input type="radio" name="lang" value="en" /><span>EN</span></label>
+        <label><input type="radio" name="lang" value="zh" /><span>ZH</span></label>
+        <label><input type="radio" name="lang" value="both" checked /><span>both</span></label>
+      </span>
+      <button type="submit">subscribe</button>
+    </form>
+  </section>
+
+  <footer class="colophon">
+    <nav>
+      <a href="/thesis">thesis</a><a href="/journal/">journal</a><a href="/about">about</a><a href="/subscribe">subscribe</a><a href="https://github.com/WujiLabs">github</a><a href="mailto:cosimo@wujilabs.dev">contact</a>
+    </nav>
+    <span>2026. MIT licensed.</span>
+  </footer>
 </LandingLayout>

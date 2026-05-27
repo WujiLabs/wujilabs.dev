@@ -27,8 +27,6 @@ const isZh = lang === 'zh-Hans';
     </style>
     <style is:global define:vars={{ bodySize: isZh ? '17px' : '18px', lineHeight: isZh ? '1.9' : '1.8' }}>
       body {
-        background: var(--thesis-bg);
-        color: var(--thesis-text);
         font-size: var(--bodySize);
         line-height: var(--lineHeight);
         padding: calc(var(--space-unit) * 6) calc(var(--space-unit) * 3);
@@ -59,17 +57,17 @@ const isZh = lang === 'zh-Hans';
         margin-bottom: calc(var(--space-unit) * 2);
       }
       .thesis a {
-        color: var(--thesis-link);
+        color: var(--link);
       }
       .thesis a:hover {
         text-decoration: none;
       }
       .thesis blockquote {
-        border-left: 3px solid var(--thesis-border);
+        border-left: 3px solid var(--rule);
         padding-left: calc(var(--space-unit) * 3);
         margin: calc(var(--space-unit) * 3) 0;
         font-style: italic;
-        color: var(--thesis-text-secondary);
+        color: var(--text-2);
       }
       .thesis code {
         background: rgba(0, 0, 0, 0.05);
@@ -84,7 +82,7 @@ const isZh = lang === 'zh-Hans';
       }
       .thesis hr {
         border: none;
-        border-top: 1px solid var(--thesis-border);
+        border-top: 1px solid var(--rule);
         margin: calc(var(--space-unit) * 5) 0;
       }
       .thesis ul, .thesis ol {
@@ -99,7 +97,7 @@ const isZh = lang === 'zh-Hans';
       }
       .meta {
         font-family: 'Source Sans 3', 'Noto Sans SC', sans-serif;
-        color: var(--thesis-text-secondary);
+        color: var(--text-2);
         font-size: 0.9rem;
         margin-bottom: calc(var(--space-unit) * 5);
       }
@@ -108,11 +106,11 @@ const isZh = lang === 'zh-Hans';
         margin-top: calc(var(--space-unit) * 6);
         font-family: 'Source Sans 3', 'Noto Sans SC', sans-serif;
         font-size: 0.9rem;
-        color: var(--thesis-text-secondary);
+        color: var(--text-2);
         text-decoration: none;
       }
       .back-link:hover {
-        color: var(--thesis-link);
+        color: var(--link);
       }
 
       @media (max-width: 480px) {

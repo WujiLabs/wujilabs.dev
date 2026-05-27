@@ -1,31 +1,29 @@
 :root {
   --space-unit: 8px;
+  --content-width-landing: 880px;
   --content-width-thesis: 680px;
-  --content-width-landing: 480px;
 
-  --landing-bg: #111;
-  --landing-text: #e8e4df;
-  --landing-text-secondary: #888;
-  --landing-link: #a0b8d0;
-
-  --thesis-bg: #f5f1eb;
-  --thesis-text: #1a1a1a;
-  --thesis-text-secondary: #666;
-  --thesis-link: #2a5db0;
-  --thesis-border: #ddd;
+  /* Canonical palette — see DESIGN.md. Unified across landing + thesis + content + journal. */
+  --bg: #f5f1eb;          /* warm parchment */
+  --text: #1a1a1a;        /* primary body + headings */
+  --text-2: #666;         /* secondary body, muted */
+  --text-3: #777;         /* dates, captions, meta (WCAG AA on body-sized text) */
+  --link: #2a5db0;        /* deep blue, only chromatic accent */
+  --rule: #ddd;           /* hairline separators */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --thesis-bg: #1a1a1a;
-    --thesis-text: #e0dcd7;
-    --thesis-text-secondary: #999;
-    --thesis-link: #7ab3ef;
-    --thesis-border: #333;
+    --bg: #1a1a1a;
+    --text: #e0dcd7;
+    --text-2: #999;
+    --text-3: #888;
+    --link: #7ab3ef;
+    --rule: #333;
   }
 }
 
-* {
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -37,6 +35,8 @@ html {
 }
 
 body {
+  background: var(--bg);
+  color: var(--text);
   font-family: 'Source Serif 4', 'Noto Serif SC', Georgia, serif;
   line-height: 1.8;
 }
