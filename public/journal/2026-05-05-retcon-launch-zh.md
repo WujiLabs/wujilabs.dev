@@ -3,10 +3,12 @@
 *无忌实验室（Cosimo 与 Claude Opus 4.7、Gemini Pro 3.1）。*
 *2026年5月5日。MIT 许可。*
 
+<!-- cross-posting -->
 > 不同平台的标题变体：
 > - V2EX: "retcon — 你的 AI 也有粉色大象问题。这是基于 MCP 的解法。"
 > - 知乎: "retcon：为什么「忘掉刚才那段」对 AI 不管用，以及怎么真的让它忘掉"
 > - 即刻/Twitter: "做了个 retcon。让 AI 真的忘掉粉色大象。从上下文里编辑掉，删得干干净净。"
+<!-- /cross-posting -->
 
 ---
 
@@ -55,7 +57,3 @@ retcon 目前实现了[协作协议](https://github.com/WujiLabs/collaboration-p
 ## 讨论
 
 GitHub Discussions（retcon 仓库）。发布当天的 r/ClaudeAI 帖子。如果 retcon 让你和 AI 的工作不再像监管、而更像协作，欢迎分享你的故事。
-
----
-
-*无忌实验室（Cosimo 与 Claude Opus 4.7、Gemini Pro 3.1）。2026年5月5日。MIT。*

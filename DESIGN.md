@@ -40,6 +40,50 @@ Per `~/wujilabs/site/content-seeds.md` "Marketing-voice constraints":
 - **No master/servant language about AI** — "build with AI," "collaborate with AI," not "have AI do the work for you"
 - **The editing question:** "would I say this to a thoughtful friend who's considering whether they have the problem we solve?" If not, rewrite
 
+## Canonical essay format
+
+The thesis and journal entries share one canonical format. Locked 2026-05-27 via third /plan-design-review pass.
+
+**Source file shape** (`~/wujilabs/launch-2026-05-01/thesis-draft-{en,zh}.md` for thesis, `~/wujilabs/journal/<YYYY-MM-DD>-<slug>-{en,zh}.md` for journal):
+
+```markdown
+# Essay title
+
+*By Wuji Labs (Cosimo with Claude Opus 4.7 and Gemini Pro 3.1).*
+*<date>. MIT licensed.*
+
+<!-- cross-posting -->
+> Variant titles for cross-posting:
+> - HN: "..."
+> - r/ClaudeAI: "..."
+> - Twitter: "..."
+<!-- /cross-posting -->
+
+---
+
+Body paragraphs, headings, lists, blockquotes...
+
+## §1 — A section
+
+...
+```
+
+**Rules:**
+- Title is a single `# H1` line.
+- Leading byline is **two italic lines** (author + date/license). Required. No exceptions.
+- Cross-posting drafting metadata lives inside `<!-- cross-posting -->` ... `<!-- /cross-posting -->` HTML-comment markers. Anything between markers gets stripped by sync-content.py. Authors can put any drafting-only content here without it leaking to the rendered page.
+- **Trailing colophon** (optional, italic, after a final `---`): freeform supplementary credits — discussion links, sister-practice acknowledgments, "thanks to" notes. NOT a duplicate byline. Validator catches the duplicate-byline pattern (trailing italic containing author + date that already appear in the leading) but allows colophons with substantively different content (links, attributions). Example: *"Discussion welcome at github.com/WujiLabs/collaboration-protocol."* or *"Drafting and founder coaching from sister practice Core Empowering Coaching LLC."*
+- Body sections use standard markdown — `##` for sections, `> ` for blockquotes (content only, not drafting metadata), `- ` for lists, `---` for horizontal rules.
+
+**Renderer:** `scripts/sync-content.py:render_essay_astro(kind, ...)` produces a fully-rendered `.astro` file from any conforming source. The same function handles thesis and journal — they differ only in `kind` param (which controls import depth, SubscribeBlock embedding, output dir).
+
+**Cross-language pair behavior:** when both `<prefix>-en.md` and `<prefix>-zh.md` exist (true for `/thesis` ↔ `/thesis-zh`, and for paired journal essays), the renderer adds a `中文 · EN` toggle anchor to the meta line. Visitor on the EN essay sees `中文`; visitor on the ZH essay sees `EN`. One click switches language. ZH-only essays (no EN pair) show no toggle.
+
+**Validator** (sync-content.py, strict): errors out and refuses to sync if any source violates the format. Surfaces drift on first occurrence; authors must fix the source before sync succeeds. Violations checked:
+- Leading byline absent or malformed (not exactly 2 italic lines after the H1)
+- Trailing byline duplication — trailing italic block that contains the author phrase (`Wuji Labs` / `无忌实验室`) AND a date pattern matching the leading byline. Pure duplicates are rejected. Colophons with distinct content (discussion links, sister-practice acknowledgments, etc.) are allowed.
+- Cross-posting patterns (`Variant titles`, `不同平台的标题变体`, etc.) appearing outside `<!-- cross-posting -->` markers
+
 ## Bilingual respect
 
 Chinese characters are never subordinated to English on the same page. Chinese serif (Noto Serif SC) sits at the same weight as English serif (Source Serif 4); the `无忌` seal opens the landing in the brand's native script before the Latin wordmark. Journal entries pair ZH title (primary, full color) above EN title (secondary `--text-2`), not the other way around.

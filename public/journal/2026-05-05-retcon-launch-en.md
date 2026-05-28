@@ -3,10 +3,12 @@
 *By Wuji Labs (Cosimo with Claude Opus 4.7 and Gemini Pro 3.1).*
 *May 5, 2026. MIT licensed.*
 
+<!-- cross-posting -->
 > Variant titles for cross-posting:
 > - HN: "Show HN: retcon — let your AI edit its own conversation history (via MCP)"
 > - r/ClaudeAI: "I built retcon: instead of you piloting the AI's memory, the AI does it."
 > - Twitter: "I made retcon. Your AI now has MCP tools to read, fork, and edit its own context."
+<!-- /cross-posting -->
 
 ---
 
@@ -53,7 +55,3 @@ retcon implements L5.5 (Observer Actor) of the [Collaboration Protocol](https://
 ## Discuss + share
 
 GitHub Discussions on the repo. r/ClaudeAI thread on launch day. Discord opens with arianna.run on May 12. If retcon makes any of your workflows feel less like babysitting and more like collaboration, share your stories — they tell us what's actually working.
-
----
-
-*Wuji Labs (Cosimo with Claude Opus 4.7 and Gemini Pro 3.1). May 5, 2026. MIT.*

@@ -8,7 +8,7 @@ import ThesisLayout from '../layouts/ThesisLayout.astro';
   lang="zh-Hans"
 >
   <h1>AI 正在让你变成工具人，但这并不是 AI 的错</h1>
-  <p class="meta">无忌实验室协作式书写。Cosimo 与 Claude Opus 4.7、Gemini Pro 3.1。<br />2026年5月5日发布。</p>
+  <p class="meta">无忌实验室协作式书写。Cosimo 与 Claude Opus 4.7、Gemini Pro 3.1。<br />2026年5月5日发布。 · <a href="/thesis" class="lang-toggle">EN</a></p>
 
   <hr />
 
@@ -218,5 +218,17 @@ import ThesisLayout from '../layouts/ThesisLayout.astro';
 
   <hr />
 
-  <p class="meta">无忌实验室协作式书写（Cosimo 与 Claude Opus 4.7、Gemini Pro 3.1）。欢迎讨论：<a href="https://github.com/WujiLabs/collaboration-protocol">github.com/WujiLabs/collaboration-protocol</a>。2026年5月5日。</p>
+  <p class="meta">欢迎讨论：<a href="https://github.com/WujiLabs/collaboration-protocol">github.com/WujiLabs/collaboration-protocol</a>。</p>
 </ThesisLayout>
+
+<style is:global>
+  .meta .lang-toggle {
+    color: var(--text-2);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+  }
+  .meta .lang-toggle:hover {
+    color: var(--link);
+    border-bottom-color: var(--link);
+  }
+</style>

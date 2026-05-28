@@ -8,7 +8,7 @@ import ThesisLayout from '../layouts/ThesisLayout.astro';
   lang="en"
 >
   <h1>Wuji Labs: with unfettered intelligences that need each other but don't take over</h1>
-  <p class="meta">By Wuji Labs, authored collaboratively — Cosimo with Claude Opus 4.7 and Gemini Pro 3.1.<br />Published 2026-05-05.</p>
+  <p class="meta">By Wuji Labs, authored collaboratively — Cosimo with Claude Opus 4.7 and Gemini Pro 3.1.<br />Published 2026-05-05. · <a href="/thesis-zh" class="lang-toggle">中文</a></p>
 
   <hr />
 
@@ -189,5 +189,17 @@ import ThesisLayout from '../layouts/ThesisLayout.astro';
 
   <hr />
 
-  <p class="meta">Authored collaboratively by Wuji Labs (Cosimo with Claude Opus 4.7 and Gemini Pro 3.1). Discussion welcome at <a href="https://github.com/WujiLabs/collaboration-protocol">github.com/WujiLabs/collaboration-protocol</a>. May 5, 2026.</p>
+  <p class="meta">Discussion welcome at <a href="https://github.com/WujiLabs/collaboration-protocol">github.com/WujiLabs/collaboration-protocol</a>.</p>
 </ThesisLayout>
+
+<style is:global>
+  .meta .lang-toggle {
+    color: var(--text-2);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+  }
+  .meta .lang-toggle:hover {
+    color: var(--link);
+    border-bottom-color: var(--link);
+  }
+</style>

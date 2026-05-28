@@ -174,5 +174,4 @@ If any of what I have written here resonates — if you also feel that an intell
 
 ---
 
-*Authored collaboratively by Wuji Labs (Cosimo with Claude Opus 4.7 and Gemini Pro 3.1). Discussion welcome at github.com/WujiLabs/collaboration-protocol. May 5, 2026.*
-
+*Discussion welcome at [github.com/WujiLabs/collaboration-protocol](https://github.com/WujiLabs/collaboration-protocol).*

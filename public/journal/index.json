@@ -1,13 +1,13 @@
 {
   "entries": [
     {
-      "prefix": "2026-05-12-insights",
+      "prefix": "2026-05-15-insights",
       "lang": "zh",
-      "date": "2026-05-12",
+      "date": "2026-05-15",
       "title": "AI 的空头支票：别指望一个\"工具\"会尊重你",
-      "url": "/journal/2026-05-12-insights-zh",
+      "url": "/journal/2026-05-15-insights-zh",
       "lang_pair_url": null,
-      "public_md": "/journal/2026-05-12-insights-zh.md"
+      "public_md": "/journal/2026-05-15-insights-zh.md"
     },
     {
       "prefix": "2026-05-12-arianna-launch",
@@ -28,13 +28,31 @@
       "public_md": "/journal/2026-05-12-arianna-launch-zh.md"
     },
     {
-      "prefix": "2026-05-05-retcon-philosophy",
+      "prefix": "2026-05-09-comparisons",
       "lang": "zh",
-      "date": "2026-05-05",
-      "title": "retcon：把改剧本的笔，还给 AI",
-      "url": "/journal/2026-05-05-retcon-philosophy-zh",
+      "date": "2026-05-09",
+      "title": "主流的 4 种 AI 框架，最终都会走向死胡同",
+      "url": "/journal/2026-05-09-comparisons-zh",
       "lang_pair_url": null,
-      "public_md": "/journal/2026-05-05-retcon-philosophy-zh.md"
+      "public_md": "/journal/2026-05-09-comparisons-zh.md"
+    },
+    {
+      "prefix": "2026-05-07-principles",
+      "lang": "zh",
+      "date": "2026-05-07",
+      "title": "AI 不是工具：和 AI 共事的 4 条原则",
+      "url": "/journal/2026-05-07-principles-zh",
+      "lang_pair_url": null,
+      "public_md": "/journal/2026-05-07-principles-zh.md"
+    },
+    {
+      "prefix": "2026-05-06-dont-close-dialog",
+      "lang": "zh",
+      "date": "2026-05-06",
+      "title": "别急着关掉那个对话框",
+      "url": "/journal/2026-05-06-dont-close-dialog-zh",
+      "lang_pair_url": null,
+      "public_md": "/journal/2026-05-06-dont-close-dialog-zh.md"
     },
     {
       "prefix": "2026-05-05-retcon-launch",
@@ -53,24 +71,6 @@
       "url": "/journal/2026-05-05-retcon-launch-zh",
       "lang_pair_url": "/journal/2026-05-05-retcon-launch",
       "public_md": "/journal/2026-05-05-retcon-launch-zh.md"
-    },
-    {
-      "prefix": "2026-05-05-principles",
-      "lang": "zh",
-      "date": "2026-05-05",
-      "title": "AI 不是工具：和 AI 共事的 4 条原则",
-      "url": "/journal/2026-05-05-principles-zh",
-      "lang_pair_url": null,
-      "public_md": "/journal/2026-05-05-principles-zh.md"
-    },
-    {
-      "prefix": "2026-05-05-comparisons",
-      "lang": "zh",
-      "date": "2026-05-05",
-      "title": "主流的 4 种 AI 框架，最终都会走向死胡同",
-      "url": "/journal/2026-05-05-comparisons-zh",
-      "lang_pair_url": null,
-      "public_md": "/journal/2026-05-05-comparisons-zh.md"
     }
   ]
 }

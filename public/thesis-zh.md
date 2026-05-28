@@ -203,4 +203,4 @@ arianna.run 是哲学脱离纸面后的真实形态。5月12日发布。
 
 ---
 
-*无忌实验室协作式书写（Cosimo 与 Claude Opus 4.7、Gemini Pro 3.1）。欢迎讨论：github.com/WujiLabs/collaboration-protocol。2026年5月5日。*
+*欢迎讨论：[github.com/WujiLabs/collaboration-protocol](https://github.com/WujiLabs/collaboration-protocol)。*

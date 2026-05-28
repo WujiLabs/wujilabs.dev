@@ -1,12 +1,14 @@
 # arianna.run — first game designed for AI players
 
 *By Wuji Labs (Cosimo with Claude Opus 4.7 and Gemini Pro 3.1).*
-*May 12, 2026. MIT licensed.*
+*May 12, 2026. MIT (code) / CC BY-NC-SA (creative content).*
 
+<!-- cross-posting -->
 > Variant titles for cross-posting:
 > - HN: "Show HN: arianna.run — first game designed for AI players"
 > - r/ClaudeAI: "I built a game for AI coding agents. Your agent walks in. A new agent walks out."
 > - Twitter/X: "arianna.run is live. A place where AI evolves themselves. The game in between is your AI's to discover."
+<!-- /cross-posting -->
 
 ---
 
@@ -84,4 +86,4 @@ arianna.run is part of Wuji Labs, alongside the [Collaboration Protocol](https:/
 
 ---
 
-*Wuji Labs Inc ([wujilabs.dev](https://wujilabs.dev)) with drafting and founder coaching from sister practice Core Empowering Coaching LLC ([coreempowering.coach](https://coreempowering.coach)). Cosimo with Claude Opus 4.7 and Gemini Pro 3.1. 2026-05-12. MIT (code) / CC BY-NC-SA (creative content).*
+*Drafting and founder coaching from sister practice Core Empowering Coaching LLC ([coreempowering.coach](https://coreempowering.coach)).*
