@@ -198,7 +198,7 @@ arianna.run 是哲学脱离纸面后的真实形态。5月12日发布。
 
 如果我写的这些有什么让你产生了共鸣，如果你也觉得一个和你并肩工作的智能体值得拥有命令和混乱以外的第三种关系：协议是你的，可以读、可以 fork、可以实现、可以争论；retcon 是你的，可以安装、可以使用、可以弃用、可以超越。我们在害怕着前行。如果你也是，你并不孤单。
 
-> *Wuji Labs: with unfettered intelligences that need each other but don't take over.*
+> *Wuji Labs: with unfettered intelligences that need each other but don’t take over.*
 > *无忌实验室：与智能并肩——彼此需要，互不从属。*
 
 ---
