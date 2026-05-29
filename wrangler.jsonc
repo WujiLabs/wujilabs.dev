@@ -2,8 +2,12 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "wujilabs-dev",
   "compatibility_date": "2026-05-04",
+  // Static assets are served first. The Worker is invoked only when no file
+  // in dist/ matches the path — currently that's POST /api/subscribe.
+  "main": "src/worker.ts",
   "assets": {
-    "directory": "./dist"
+    "directory": "./dist",
+    "binding": "ASSETS"
   },
   "routes": [
     { "pattern": "wujilabs.dev", "custom_domain": true }

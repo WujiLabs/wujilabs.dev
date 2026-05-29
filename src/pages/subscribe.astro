@@ -9,6 +9,171 @@ import ThesisLayout from '../layouts/ThesisLayout.astro';
 >
   <h1>Subscribe</h1>
   <p class="meta">Bilingual journal · roughly biweekly</p>
-  <p>The Wuji Labs journal publishes new essays in English and Chinese, roughly every couple of weeks. Pick a language tag at signup — <em>EN</em>, <em>ZH</em>, or <em>both</em> — and the sends are segmented accordingly. No cross-language spam.</p>
-  <p>The full subscribe surface (Buttondown form, language-tag selector, DKIM/SPF-authenticated sends) lands in Phase 5 of the site reorg. For now, watch <a href="https://github.com/WujiLabs">github.com/WujiLabs</a> for the journal launch.</p>
+
+  <p>The Wuji Labs journal publishes new essays in English and Chinese, roughly every couple of weeks. Pick a language tag at signup — <em>EN</em>, <em>中文</em>, or <em>both</em> — and the sends are segmented accordingly. No cross-language spam.</p>
+
+  <div id="status-ok" class="status status-ok" hidden>
+    <strong>You’re on the list.</strong> Confirmation comes from a real mail provider once it’s wired up; for now, your email is recorded on our side. No double-opt-in spam.
+  </div>
+  <div id="status-err" class="status status-err" hidden>
+    <strong>Something went wrong.</strong> <span id="status-err-detail"></span> If it keeps failing, email <a href="mailto:cosimo@wujilabs.dev">cosimo@wujilabs.dev</a>.
+  </div>
+
+  <form id="subscribe-form" action="/api/subscribe" method="post">
+    <label class="field">
+      <span class="field-label">Email</span>
+      <input type="email" name="email" required autocomplete="email" placeholder="you@somewhere.com" />
+    </label>
+
+    <fieldset class="field lang-field">
+      <legend class="field-label">Send me</legend>
+      <label class="radio"><input type="radio" name="lang" value="en" /><span>EN essays</span></label>
+      <label class="radio"><input type="radio" name="lang" value="zh" /><span>中文 essays</span></label>
+      <label class="radio"><input type="radio" name="lang" value="both" checked /><span>both</span></label>
+    </fieldset>
+
+    {/* Honeypot: a real human won't see or fill this. Bots that auto-fill every field will trip it. */}
+    <label class="honeypot" aria-hidden="true">
+      Leave this blank if you’re a person
+      <input type="text" name="website" tabindex="-1" autocomplete="off" />
+    </label>
+
+    <button type="submit">Subscribe</button>
+  </form>
+
+  <p class="footnote">Buttondown integration (real confirmation email, unsubscribe links, DKIM/SPF) lands once the sending cadence stabilizes. Until then this form records your signup; first send goes out when the Buttondown wiring is done.</p>
 </ThesisLayout>
+
+<script is:inline>
+  // Show success or error banner based on query string, then strip the param
+  // so a page refresh doesn't re-flash. Also pre-fill from a query (the landing
+  // page's quick-signup posts to /subscribe with email + lang as a GET — this
+  // lets that flow land on the real form with the user's values already filled).
+  (function () {
+    const params = new URLSearchParams(location.search);
+    const ok = params.get('ok');
+    const err = params.get('error');
+    if (ok) {
+      const el = document.getElementById('status-ok');
+      if (el) el.hidden = false;
+    } else if (err) {
+      const el = document.getElementById('status-err');
+      const detail = document.getElementById('status-err-detail');
+      const map = {
+        email: 'That email didn’t look right.',
+        parse: 'We couldn’t read the form data.',
+        server: 'Something on our side broke.',
+      };
+      if (detail) detail.textContent = map[err] || 'Unknown error.';
+      if (el) el.hidden = false;
+    }
+    const emailQ = params.get('email');
+    const langQ = params.get('lang');
+    if (emailQ) {
+      const input = document.querySelector('input[name="email"]');
+      if (input) input.value = emailQ;
+    }
+    if (langQ) {
+      const radio = document.querySelector('input[name="lang"][value="' + langQ + '"]');
+      if (radio) radio.checked = true;
+    }
+    if (ok || err || emailQ || langQ) {
+      // Clean URL so reloads start fresh.
+      const cleanUrl = location.pathname;
+      history.replaceState(null, '', cleanUrl);
+    }
+  })();
+</script>
+
+<style>
+  .status {
+    border: 1px solid var(--rule);
+    padding: calc(var(--space-unit) * 2) calc(var(--space-unit) * 3);
+    margin: calc(var(--space-unit) * 3) 0;
+    font-family: 'Source Sans 3', 'Noto Sans SC', sans-serif;
+    font-size: 0.95rem;
+  }
+  .status-ok { border-color: var(--text); }
+  .status-err { border-color: #b04040; color: #b04040; }
+  .status-err a { color: inherit; }
+
+  #subscribe-form {
+    margin: calc(var(--space-unit) * 4) 0;
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--space-unit) * 3);
+    font-family: 'Source Sans 3', 'Noto Sans SC', sans-serif;
+  }
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--space-unit) * 1);
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+  .field-label {
+    color: var(--text-2);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  #subscribe-form input[type="email"] {
+    font: inherit;
+    font-size: 1rem;
+    padding: calc(var(--space-unit) * 1.5) 0;
+    border: none;
+    border-bottom: 1px solid var(--rule);
+    background: transparent;
+    color: var(--text);
+    width: 100%;
+    box-sizing: border-box;
+  }
+  #subscribe-form input[type="email"]:focus {
+    outline: none;
+    border-bottom-color: var(--text);
+  }
+  .lang-field {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: calc(var(--space-unit) * 3);
+    align-items: baseline;
+  }
+  .lang-field .field-label { width: 100%; }
+  .radio {
+    display: inline-flex;
+    align-items: center;
+    gap: calc(var(--space-unit) * 1);
+    cursor: pointer;
+  }
+  .radio input[type="radio"] {
+    margin: 0;
+    accent-color: var(--text);
+  }
+  .honeypot {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  #subscribe-form button {
+    align-self: flex-start;
+    font: inherit;
+    font-size: 0.95rem;
+    padding: calc(var(--space-unit) * 1.5) calc(var(--space-unit) * 4);
+    background: var(--text);
+    color: var(--bg);
+    border: none;
+    cursor: pointer;
+    transition: opacity 120ms;
+  }
+  #subscribe-form button:hover { opacity: 0.85; }
+
+  .footnote {
+    font-family: 'Source Sans 3', 'Noto Sans SC', sans-serif;
+    font-size: 0.85rem;
+    color: var(--text-3);
+    margin-top: calc(var(--space-unit) * 6);
+  }
+</style>
