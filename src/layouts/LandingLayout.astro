@@ -142,6 +142,38 @@ const { title, description } = Astro.props;
         line-height: 1.6;
         margin-bottom: 0;
       }
+      /* Quiet pricing pointer on household-practice cards. Sits below the
+         body, smaller + more muted than body copy, hairline link styling. */
+      .card-price {
+        font-family: 'Source Sans 3', 'Noto Sans SC', sans-serif;
+        font-size: 0.85rem;
+        color: var(--text-3);
+        margin: calc(var(--space-unit) * 1.5) 0 0 0;
+      }
+      .card-price a {
+        color: inherit;
+        text-decoration: none;
+        border-bottom: 1px solid var(--rule);
+        padding-bottom: 1px;
+      }
+      .card-price a:hover {
+        color: var(--link);
+        border-bottom-color: var(--link);
+      }
+
+      /* Thesis pointer appended to the "all" framing. Drops the framing's
+         italic so it reads as a navigation link, not essay prose. */
+      .thesis-pointer {
+        font-style: normal;
+        color: var(--text-2);
+        text-decoration: none;
+        border-bottom: 1px solid var(--rule);
+        padding-bottom: 1px;
+      }
+      .thesis-pointer:hover {
+        color: var(--link);
+        border-bottom-color: var(--link);
+      }
 
       /* JOURNAL */
       .journal {

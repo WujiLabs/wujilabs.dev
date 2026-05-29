@@ -6,6 +6,11 @@ interface Card {
   body: string;
   href: string;
   dims: string;
+  // Optional pricing pointer. Renders as a quiet sub-line under the body,
+  // links to the page's pricing section. Only the two household-practice
+  // cards (Wuji Labs Inc, CEC) carry this so the buyer doesn't have to
+  // click through to see numbers.
+  priceLine?: { text: string; href: string };
 }
 
 // 8 umbrella surfaces. `dims` is a space-separated list of dimension codes:
@@ -20,12 +25,14 @@ const cards: Card[] = [
     body: 'Bundled with the AI-relational coaching and tools training that make adoption real, across any AI vendor. For anyone losing hours to manual shuffle before getting to the work only they can do.',
     href: '/wuji-labs',
     dims: 'hh ha ah aa',
+    priceLine: { text: 'Embed $3k · Retain $1.5k · Own $0', href: '/wuji-labs#pricing' },
   },
   {
     title: 'CEC — Life & Leadership Coaching',
     body: "iPEC-rooted coaching. The household practice’s original baseline — humans grow with each other, and the practice is older than any technology stack.",
     href: '/cec',
     dims: 'hh',
+    priceLine: { text: 'starting from $100/hr', href: '/cec' },
   },
   {
     title: 'AI-Relational Coaching',
@@ -110,7 +117,7 @@ const recentJournal = [
   </nav>
 
   <div class="framings" aria-live="polite">
-    <p class="framing" data-for="all">Practices and artifacts, projections of one substrate across four dimensions.</p>
+    <p class="framing" data-for="all">Practices and artifacts, projections of one substrate across four dimensions. <a href="/thesis" class="thesis-pointer">Read the founding thesis →</a></p>
     <p class="framing" data-for="hh">How humans grow with each other in the AI era — coaching, leadership, communication that doesn’t go away when AI shows up.</p>
     <p class="framing" data-for="ha">How a person engages AI — designing workflows, building the craft of communicating with AI, finding groundedness with these new tools.</p>
     <p class="framing" data-for="ah">How AI shows up as a sovereign peer with its own agency, context, and continuity — because something that’s only a tool can’t choose to help. The structurally distinctive column Wuji Labs operates on.</p>
@@ -122,6 +129,9 @@ const recentJournal = [
       <article class="card" data-dims={c.dims}>
         <h3><a href={c.href}>{c.title}</a></h3>
         <p>{c.body}</p>
+        {c.priceLine && (
+          <p class="card-price"><a href={c.priceLine.href}>{c.priceLine.text} →</a></p>
+        )}
       </article>
     ))}
   </section>
