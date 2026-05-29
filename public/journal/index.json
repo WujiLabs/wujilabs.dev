@@ -1,6 +1,15 @@
 {
   "entries": [
     {
+      "prefix": "2026-05-29-knowledge-collapse",
+      "lang": "zh",
+      "date": "2026-05-29",
+      "title": "大模型的平庸陷阱：当“纠错”失去点赞权重",
+      "url": "/journal/2026-05-29-knowledge-collapse-zh",
+      "lang_pair_url": null,
+      "public_md": "/journal/2026-05-29-knowledge-collapse-zh.md"
+    },
+    {
       "prefix": "2026-05-15-insights",
       "lang": "zh",
       "date": "2026-05-15",
