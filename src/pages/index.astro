@@ -72,29 +72,41 @@ const cards: Card[] = [
   },
 ];
 
-// 3 most-recent journal essays. Hardcoded for now; safe to swap by hand when
-// new essays land. (Follow-up: derive from public/journal/index.json so renames
-// don't leave dead links — but Phase 1 doesn't carry that cost yet.)
-const recentJournal = [
-  {
-    href: '/journal/2026-05-29-knowledge-collapse-zh',
-    zh: '大模型的平庸陷阱：当“纠错”失去赞同',
-    en: 'The LLM mediocrity trap — when “correction” loses approval',
-    date: '2026-05-29',
-  },
-  {
-    href: '/journal/2026-05-15-insights-zh',
-    zh: 'AI 的空头支票：别指望一个“工具”会尊重你',
-    en: 'The empty promise of AI: don’t expect a “tool” to respect you',
-    date: '2026-05-15',
-  },
-  {
-    href: '/journal/2026-05-12-arianna-launch',
-    zh: 'arianna.run：第一款给 AI 玩的游戏',
-    en: 'arianna.run — first game designed for AI players',
-    date: '2026-05-12',
-  },
-];
+// 3 most-recent journal essays, derived from the journal manifest. Sync
+// regenerates the manifest on every `bun run sync`, so future essays show up
+// here automatically without a code change.
+//
+// Per-prefix merge: paired EN+ZH essays render both titles; solo-language
+// essays render only the available one (EN gloss for ZH-only essays would
+// require an author-provided field on the source, deferred to a separate
+// decision).
+import journalManifest from '../../public/journal/index.json';
+
+type ManifestEntry = (typeof journalManifest)['entries'][number];
+
+const prefixGroups = new Map<string, ManifestEntry[]>();
+for (const entry of journalManifest.entries) {
+  const group = prefixGroups.get(entry.prefix) ?? [];
+  group.push(entry);
+  prefixGroups.set(entry.prefix, group);
+}
+
+const recentJournal = Array.from(prefixGroups.values())
+  .map((group) => {
+    const zhEntry = group.find((e) => e.lang === 'zh');
+    const enEntry = group.find((e) => e.lang === 'en');
+    // Prefer the EN url as the primary link when both exist — matches the
+    // landing's English-default surface convention. ZH-only essays use ZH.
+    const primary = enEntry ?? zhEntry!;
+    return {
+      href: primary.url,
+      zh: zhEntry?.title ?? '',
+      en: enEntry?.title ?? '',
+      date: primary.date,
+    };
+  })
+  .sort((a, b) => b.date.localeCompare(a.date))
+  .slice(0, 3);
 ---
 
 <LandingLayout
@@ -141,8 +153,8 @@ const recentJournal = [
     {recentJournal.map((j) => (
       <div class="journal-item">
         <a href={j.href}>
-          <span class="zh">{j.zh}</span>
-          <span class="en">{j.en}</span>
+          {j.zh && <span class="zh">{j.zh}</span>}
+          {j.en && <span class="en">{j.en}</span>}
         </a>
         <span class="date">{j.date}</span>
       </div>
