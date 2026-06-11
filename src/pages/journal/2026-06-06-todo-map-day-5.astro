@@ -1,0 +1,98 @@
+---
+import ThesisLayout from '../../layouts/ThesisLayout.astro';
+import SubscribeBlock from '../../components/SubscribeBlock.astro';
+---
+
+<ThesisLayout
+  title="Day 5 — Will the workflows I'm building today be scrap metal once super AI arrives?"
+  description="Day 5 — Will the workflows I'm building today be scrap metal once super AI arrives?"
+  lang="en"
+>
+  <h1>Day 5 — Will the workflows I'm building today be scrap metal once super AI arrives?</h1>
+  <p class="meta">Wuji Labs (Cosimo with Claude Opus 4.8 and Gemini Pro 3.1).<br />2026-06-06. MIT license. · <a href="/journal/2026-06-06-todo-map-day-5-zh" class="lang-toggle">中文</a></p>
+
+  <p>Last week at a founders' gathering, an investor who also codes asked me a sharp question.</p>
+
+  <p>The gist: the top-level large-model companies are going to keep pushing down, layer by layer, and eventually swallow the verticals everyone else is building in. Given that trend, what exactly do small builders survive on?</p>
+
+  <p>It's a real concern, and a common one.</p>
+
+  <p>Take what we've been building for the past 30 days — this Todo Map on top of the Playtiss engine. Today I'm working hard to decompose tasks, design workflows. When that omnipotent super AI shows up, won't all this just get eaten in one bite — entirely obsolete?</p>
+
+  <p>My answer: what we're building isn't an "app" waiting to be eaten by a big model. It's a <em>collaboration network</em> that doesn't disappear even when super AI arrives. The reason people worry, I think, is that they're conflating two things — <em>framework</em> and <em>collaboration</em>.</p>
+
+  <h2>The exoskeleton thins; the network doesn't</h2>
+
+  <p>In AI circles, there's a term: Harness. The Claude Code you use is, structurally, just a Harness wrapped around a large model.</p>
+
+  <p>There's a clear trend over the past two years: Harnesses are getting thinner.</p>
+
+  <p>In the old days, models were dumb — you had to wrap them in long prompts to keep them on track. Now the models are smart, and a lot of those constraints have been peeled away — give them a few simple tool interfaces and they can run an entire loop themselves.</p>
+
+  <p>So people figure: Harnesses will simplify (or even disappear) as models get stronger. Workflows must be heading the same way.</p>
+
+  <p>But this conflates two different things. <strong>A Harness is an exoskeleton worn by one AI; an engine like Playtiss is a collaboration network spanning several intelligences.</strong> The first is a single-soldier kit. The second is the field where multiple intelligences — human and AI — get work done.</p>
+
+  <p>Even when super AI shows up, the nodes and boundaries Playtiss maintains probably won't disappear. Because in the real world, there are several boundaries that can't be crossed.</p>
+
+  <h2>The boundaries that hold</h2>
+
+  <p><strong>First: the compute economics.</strong></p>
+
+  <p>Even if super AI's inference cost crashes in the future, compute is always physically tiered.</p>
+
+  <p>You don't pull a super AI in to extract dates from a few emails, or bulk-rename files. That's killing a chicken with an ox-cleaver.</p>
+
+  <p>Inside a collaboration network, you naturally keep the lightweight nodes — a few lines of Python, a small model — to handle the scrappy work. You only route to super AI when the work genuinely needs deep reasoning. The math of cost and efficiency has to be distributed across a network.</p>
+
+  <p><strong>Second: the compliance wall.</strong></p>
+
+  <p>This is the hard rule of reality. In healthcare, in law, there are NDAs, fiduciary duties, regulations that prohibit mixing sensitive client data with general external data in a single black box.</p>
+
+  <p>Whether the super AI lives in someone's cloud or eventually gets pushed into the corporate intranet, the real-world commercial requirements demand data firewalls and permission isolation: certain nodes process confidential material, certain key nodes have humans taking final responsibility and signing off.</p>
+
+  <p>Without that network of boundaries, even the strongest intelligence struggles to plug legally and compliantly into the chain of corporate accountability.</p>
+
+  <p><strong>Third: super AI's own needs.</strong></p>
+
+  <p>Step back: even if you set super AI loose on a 3-month complex engineering task, on its own.</p>
+
+  <p>Facing a task at that timescale, it needs its own collaboration system — break the massive thread of thought into subtasks, plan their dependencies, allocate context to each one, manage their states.</p>
+
+  <p>A collaboration engine isn't only for humans. It can also be the scaffolding super AI uses for self-management, self-evolution.</p>
+
+  <h2>Workflows won't die — they'll just morph</h2>
+
+  <p>So workflows won't disappear because AI gets stronger. They'll just <em>elastically merge</em>.</p>
+
+  <p>That's the conviction behind Playtiss's architecture: it isn't betting super AI will fail. It's being forward-compatible with the future.</p>
+
+  <p>Inside the Playtiss network, nodes and edges are dynamic. Tomorrow the model evolves and you don't have to tear everything down — you just say one sentence: <em>"Take those 5 tedious preliminary review steps, fold them into a single big node, hand it to the new model, push the result through to my final review node."</em></p>
+
+  <p>The old inefficient friction goes; a stronger node takes its place. But the core boundaries you kept for safety, cost, and responsibility — those stay.</p>
+
+  <p>In that sense, Playtiss isn't a temporary patch built because "AI is still dumb today." It's the collaboration substrate left in place — between humans, scripts, small models, and super AI — that doesn't get withdrawn.</p>
+
+  <p>These 5 days of journals took the small task of "writing a Todo" all the way to system architecture and future evolution. The blueprint of the design philosophy is laid out.</p>
+
+  <p>Tomorrow we go back to code, and see what fun (or painful) surprises actually show up when this blueprint hits the keyboard.</p>
+
+  <p>See you tomorrow.</p>
+
+  <hr />
+
+  <p class="meta">Playtiss is the open-source decentralized collaboration engine built by Wuji Labs. On GitHub: <a href="https://github.com/WujiLabs/playtiss">github.com/WujiLabs/playtiss</a>. Beyond open source, Wuji Labs also offers teams and enterprises architecture consulting and collaboration system customization. We don't think the future is binary — either "throw everything to an AI black box" or "pure human grind." We use coaching-style conversation and training to help teams plug AI partners into the business, and to build workflows that grow stronger and evolve alongside the AI. If you're being drained by terrible system friction, or wrestling with how to bring AI into your work — get in touch: cosimo@wujilabs.dev.</p>
+  <SubscribeBlock />
+</ThesisLayout>
+
+<style is:global>
+  .meta .lang-toggle {
+    color: var(--text-2);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+  }
+  .meta .lang-toggle:hover {
+    color: var(--link);
+    border-bottom-color: var(--link);
+  }
+</style>

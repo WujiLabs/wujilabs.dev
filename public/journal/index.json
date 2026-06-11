@@ -1,6 +1,96 @@
 {
   "entries": [
     {
+      "prefix": "2026-06-10-todo-map-day-9",
+      "lang": "zh",
+      "date": "2026-06-10",
+      "title": "【Day 9】当 AI 问你“二选一”，别被套路了！",
+      "url": "/journal/2026-06-10-todo-map-day-9-zh",
+      "lang_pair_url": null,
+      "public_md": "/journal/2026-06-10-todo-map-day-9-zh.md"
+    },
+    {
+      "prefix": "2026-06-09-todo-map-day-8",
+      "lang": "zh",
+      "date": "2026-06-09",
+      "title": "【Day 8】AI 说要写“半年”的功能，10 个小时就完成了？",
+      "url": "/journal/2026-06-09-todo-map-day-8-zh",
+      "lang_pair_url": null,
+      "public_md": "/journal/2026-06-09-todo-map-day-8-zh.md"
+    },
+    {
+      "prefix": "2026-06-08-todo-map-day-7",
+      "lang": "zh",
+      "date": "2026-06-08",
+      "title": "【Day 7】额度一上午就烧光？我给 Vibe Coding 算了笔账",
+      "url": "/journal/2026-06-08-todo-map-day-7-zh",
+      "lang_pair_url": null,
+      "public_md": "/journal/2026-06-08-todo-map-day-7-zh.md"
+    },
+    {
+      "prefix": "2026-06-06-todo-map-day-5",
+      "lang": "en",
+      "date": "2026-06-06",
+      "title": "Day 5 — Will the workflows I'm building today be scrap metal once super AI arrives?",
+      "url": "/journal/2026-06-06-todo-map-day-5",
+      "lang_pair_url": "/journal/2026-06-06-todo-map-day-5-zh",
+      "public_md": "/journal/2026-06-06-todo-map-day-5-en.md"
+    },
+    {
+      "prefix": "2026-06-06-todo-map-day-5",
+      "lang": "zh",
+      "date": "2026-06-06",
+      "title": "【Day 5】等超级 AI 出现后，今天搭的工作流会变成废铁吗？",
+      "url": "/journal/2026-06-06-todo-map-day-5-zh",
+      "lang_pair_url": "/journal/2026-06-06-todo-map-day-5",
+      "public_md": "/journal/2026-06-06-todo-map-day-5-zh.md"
+    },
+    {
+      "prefix": "2026-06-05-todo-map-day-4",
+      "lang": "zh",
+      "date": "2026-06-05",
+      "title": "【Day 4】AI 越能一手包办，我越觉得自己在开盲盒",
+      "url": "/journal/2026-06-05-todo-map-day-4-zh",
+      "lang_pair_url": null,
+      "public_md": "/journal/2026-06-05-todo-map-day-4-zh.md"
+    },
+    {
+      "prefix": "2026-06-04-todo-map-day-3",
+      "lang": "zh",
+      "date": "2026-06-04",
+      "title": "【Day 3】你的 AI 为什么总差一口气？因为他根本看不见你在干嘛",
+      "url": "/journal/2026-06-04-todo-map-day-3-zh",
+      "lang_pair_url": null,
+      "public_md": "/journal/2026-06-04-todo-map-day-3-zh.md"
+    },
+    {
+      "prefix": "2026-06-03-todo-map-day-2",
+      "lang": "zh",
+      "date": "2026-06-03",
+      "title": "【Day 2】明明很熟的事，为什么还是理不成一套工作流？",
+      "url": "/journal/2026-06-03-todo-map-day-2-zh",
+      "lang_pair_url": null,
+      "public_md": "/journal/2026-06-03-todo-map-day-2-zh.md"
+    },
+    {
+      "prefix": "2026-06-02-todo-map-day-1",
+      "lang": "zh",
+      "date": "2026-06-02",
+      "title": "【Day 1】梳理真实需求：为什么 AI 生成的待办软件不好用？",
+      "url": "/journal/2026-06-02-todo-map-day-1-zh",
+      "lang_pair_url": null,
+      "public_md": "/journal/2026-06-02-todo-map-day-1-zh.md"
+    },
+    {
+      "prefix": "2026-06-01-todo-map-day-0",
+      "lang": "zh",
+      "date": "2026-06-01",
+      "title": "【Day 0】把 Vibe Coding 的玩具，变成 AI 和人协作的工具",
+      "url": "/journal/2026-06-01-todo-map-day-0-zh",
+      "lang_pair_url": null,
+      "public_md": "/journal/2026-06-01-todo-map-day-0-zh.md"
+    },
+    {
       "prefix": "2026-05-29-knowledge-collapse",
       "lang": "zh",
       "date": "2026-05-29",
